@@ -128,12 +128,12 @@ $(()=>{
           }
       }
 
-      // console.log(event.currentTarget);
-        // console.log(player);
-        // console.log($(event.currentTarget));
-        // console.log($.inArray($(event.currentTarget),player));
-      // const selectPiece = (event)=>{
-      // }
+              // console.log(event.currentTarget);
+                // console.log(player);
+                // console.log($(event.currentTarget));
+                // console.log($.inArray($(event.currentTarget),player));
+              // const selectPiece = (event)=>{
+              // }
 
       const selectDestination = ()=>{
               // check if img is appended
@@ -152,9 +152,9 @@ $(()=>{
           //Lists possible 1st moves... Doesn't change...
 
           if(player === $player2){//<<<--- NEED to diistinguihs between p1 & p2
-              P2MoveLeft = Number(selection.attr('id'))+7;
-              P2MoveRight = Number(selection.attr('id'))+9;
-              P2JumpLeft = Number(selection.attr('id'))+14;
+              P2MoveLeft = Number(selection.attr('id'))+7;// <--- could make a playerdirection variable to represent operation
+              P2MoveRight = Number(selection.attr('id'))+9;   // would automatically change with each player,
+              P2JumpLeft = Number(selection.attr('id'))+14;   //thus could avoid the lengthy if statments
               P2JumpRight = Number(selection.attr('id'))+18;
 
           }else{
@@ -165,47 +165,52 @@ $(()=>{
           }
           //make an ordain JUMP!
           //----ALTERNATIVE--- posibilities are n rows aways from postion times 7 or 9¡, couls incorporate row count in calcing possibilities. This would allow the computer to identify all pot7ential possiblities on the board for a given piece....!  Could evaluate for any multiple of -7 or 9 so long as they are not blank... but would need to change jump evaluations... !!! Might also be useful for the board restrictions!
-console.log(P2MoveLeft);
-console.log(selection);
-console.log(destination);
-      //checks that destination selected is within range of allowable moves, then calls move.
+
+//***UPDATE NEEDE CURRENTLY ONLY P2!!!
+
+              //checks that destination selected is within range of allowable moves, then calls move.
           if(Number(destination.attr('id'))=== P2MoveLeft ||  Number(destination.attr('id'))=== P2MoveRight){
               console.log('heloow im working'); //EXCUTE MOVE!
             move(p2Image, selection, destination)
           }else if(Number(destination.attr('id'))=== P2JumpLeft ||  Number(destination.attr('id'))=== P2JumpRight){
-            //CONFIRM THAT AN OPPONENT PIECE IS IN  MOVELEFT/MOVE RIGHT
-            //EXECUTE MOVE
+            //jump(); //EXECUTE JUMP FUNCTION!!
           }
-      //Move Evaluation may need to be separate from a jump evaluationso that jumps can be looped, jump evaluations need to be looped for double and triple jumps...
-      //Opponent positions LIMIT the direction of the jump!
-
       }
+
 
       const move = (playerImage, selection, destination)=>{
         $(destination).append($('<img>').attr('src', playerImage));
-        console.log(selection.children());
         (selection.children()).remove();
+        //***NEED TO UPDATE ARRAYS!! HERE!
+        }
 
+
+
+//****  REVISED PLAYER CHANGES AND BUILD TURN TAKING BEFORE MOVING FORWARD!
+      const ordainJump =(player, selection, destination)=>{
+        //Move Evaluation may need to be separate from a jump evaluationso that jumps can be looped, jump evaluations need to be looped for double and triple jumps...
+        //Opponent positions LIMIT the direction of the jump!
+        //Run check blanks..
+        //CONFIRM THAT AN OPPONENT PIECE IS IN  MOVELEFT/MOVE RIGHT
         //IF JUMP remove opponent piece!
         // NEED TO PASS PLAYER IMAGE INTO  A VARIABLE FOR USE HERE AND FOR PIEE SELECTIONS!
         // Could have an array of images to choos from not just red black and white.
         //***player img depend on p1 or p2, reset on eah turn
         //NEED TO CONFIRM END OF TURN!! Eache time.
-      }
 
-      // const ordainJump =(player, selection, destionation)=>{
-      //     if( player === player2){
-      //            if(destination=== player+'JumpLeft' && $('#'+P2MoveLeft).attr('src', p1Image)){
-      //                 //THEN MOVE LEFT
-      //            }
-      //            }else if(destination=== P2JumpRight && $('#'+P2MoveRight).attr('src', p1Image)){
-      //                 //THEN MOVE RIGHT
-      //           }
-      //             //if it's 2 spaces awy and the space next to it has the oppenents img!!! less complex than  searchin an array. MIGHT WANT TO CREATE PLAYER /OPPONENT variables.......
-      //     }else{
-      //     //*NEED a better function to alternate player 1 & 2 using the same code,  elminating nested if statements,
-      //     }
-      // }
+        //EXECUTE MOVE
+          if( player === player2){//<--- could eliminatet he p1 p2 if stmt here using an operation variable +/- that changes with player
+                 if(destination=== player+'JumpLeft' && $('#'+P2MoveLeft).attr('src', p1Image)){
+                      //THEN MOVE LEFT
+                 }
+                 }else if(destination=== P2JumpRight && $('#'+P2MoveRight).attr('src', p1Image)){
+                      //THEN MOVE RIGHT
+                }
+                  //if it's 2 spaces awy and the space next to it has the oppenents img!!! less complex than  searchin an array. MIGHT WANT TO CREATE PLAYER /OPPONENT variables.......
+          }else{
+          //*NEED a better function to alternate player 1 & 2 using the same code,  elminating nested if statements,
+          }
+      }
 
 
       const JUMP = ()=>{
@@ -239,10 +244,7 @@ console.log(destination);
               // console.log(selectionTest);
               // console.log(destinationTest);
        })
-
-
        // selectPiece();
-
     });
   // console.log( $.inArray(event.currentTarget, player2));
      // let x = event.currentTarget;
@@ -284,28 +286,18 @@ console.log(destination);
 //TO DO! Next
 
 // BUILD GAME LOGIC
-    //10. Players Turn...
-    //11. SELECT PIECE event.target/currentTarget...
+
+    //
+
 //<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
-    //12.    SELECT DESTINATION div event.target/currentTarget...
-    // BUILD Evaluation LOGIC
-    //13. BUILD Move Piece Function. (is this separate from a jump function?)
-    //14. BUILD REMOVE Piece Function.
-    //15. ====Map Game Play====
-            // 1.click;
-            // 2. select piece; confirms that it is okay to select this piece.
-            // 3.click again;<< currently turn off one event listener, turn  on  another
-            // 4. select destination;
-            // 5. Run evaluations
-            // 6. Make move(s)/jumps -->update arrays
-            // 7. Next players turn
-            // 8. Loop.
 
+// (is this separate from a jump function?)
+    // 15. Players Turn...!!! Define images here/playerOperation/direction can you define everything here??
+              // leverage player variables to drive changes and eliminate having to write if statement with two separate programs for everything
+    // 16. BUILD Jump Function
+    // 17. BUILD REMOVE OPPONENT Piece Function. --> update arrays.
 
-
-
-
-    //*** special considerations for JUMPS! - Jumps ONLY have ONE option for moving NOT TWO! - Maybe best to run the BLANKS TEST 1ST! To eliminate any possibility of moving at all or move on to the LEAST possible options possibility of  jumping.
+//*** special considerations for JUMPS! - Jumps ONLY have ONE option for moving NOT TWO! - Maybe best to run the BLANKS TEST 1ST! To eliminate any possibility of moving at all or move on to the LEAST possible options possibility of  jumping.
     //special considerations for boundaries! - any square along the sides of the board ONLY has ONE option for moving, NOT tow
 
     // GOAL - Condition FLOW should be structured to progress as follows:
@@ -328,9 +320,22 @@ console.log(destination);
 // 5. Append correct Rows to Player Divs
 // 6. Import and assign Player images  ...could do this in board build
 // 7. !!!!CRITICAL FIX ROW COUNT! WILL CHANGE ALL OTHER EVENTS :/
-//8. ADD EVENT HANDELERS Click img OR div... PUT it ON the div so the img inherits it? or limit to the img
+// 8. ADD EVENT HANDELERS Click img OR div... PUT it ON the div so the img inherits it? or limit to the img
+// 10. ====Map Game Play====
+        // 1.click;
+        // 2. select piece; confirms that it is okay to select this piece.
+        // 3.click again;<< currently turn off one event listener, turn  on  another
+        // 4. select destination;
+        // 5. Run evaluations
+        // 6. Make move(s) -->update arrays
+        // 7. Make jump(s)  -->update arrays
+        // 8. Next players turn
+        // 9. Loop
 
-
+// 11. SELECT PIECE event.target/currentTarget...
+// 12. SELECT DESTINATION div event.target/currentTarget...
+// 13. BUILD Evaluation LOGIC
+// 14. BUILD MOVE Piece Function.
 
 
 
