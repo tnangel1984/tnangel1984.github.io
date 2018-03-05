@@ -1,0 +1,41 @@
+*{border: 1px solid gold;
+  color: white;
+}
+
+.container{
+  max-width: 1000px;
+  max-height: 1000px;
+}
+.row{margin: 0 auto;
+  max-width: 1000px;
+  max-height: 1000px;}
+.square{
+  display:inline-block;
+  /* border: 1px solid green; */
+  height: 100px;
+  width:12%;
+  margin-left:.25%;
+  overflow: hidden;
+}
+.square>img{
+display: block;
+margin:  0 auto;
+height: 60%;
+width: 60%;
+/* border:none; */
+}
+
+.oddRow >.odd{
+  background-color: red;
+}
+.oddRow >.even{
+  background-color: black;
+}
+
+.evenRow>.odd{
+  background-color: black;
+}
+
+.evenRow>.even{
+  background-color: red;
+}
