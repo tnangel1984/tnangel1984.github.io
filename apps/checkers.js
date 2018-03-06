@@ -99,15 +99,48 @@ $(()=>{
 
       $player1.append($('<img>').attr('src', p1Image));
       $player2.append($('<img>').attr('src', p2Image));
+
+
+      let alternatePlayer =true;
+      let player = $player2; //<---RANDOMIZE LATER
   // console.log($player2);
   // Is there any advantage to having these as arrays vs an objects??
 
 // ====FUNCTIONS HERE====
 
       const startGame =() =>{
+        // confirm('Ready to begin?')
             //simply need something to indicate that the game as began so turns can be counted.
+        //1. Initiate play, select player at random.
+        //2. Load player into player variable.
+        //3. Do nothing... play should be initiated by on Click events...
+        //4. How to loop from there.
+        //5. in order to initate play, player turn has to be known. Because the onclick event is tied to player sets....
+        //How to
+
       }
-      const whichTurn = () =>{
+
+      const changeTurn = (alternate) =>{
+        console.log('test');
+        alternatePlayer=!alternatePlayer;
+               //sets altP to the opposite value. i.e. changes it from true to not true: false
+
+        if(alternatePlayer  === true){
+          console.log('test2');
+           player=$player1;
+           playerOperation = Math.subtract;//<--neeeds to be a function
+           console.log(Math.subtract);
+           //Images?
+        }else{
+          console.log('test3');
+           player=$player2;
+           playerOp=()=>Math.add{};// <--neeeds to be a function
+           console.log(playerOp(2,2));
+           //Images?
+  // countTurn ++
+        }
+
+
         //count the number of turns taken
         //on first turn run a random number generator to determine which player goes first.
         //alternate every turn there after TOGGLE True/FALSE
@@ -118,7 +151,7 @@ $(()=>{
         //change player turn >>>
       }
 
-      const validateSelection = (player, eventObject)=>{
+      const validateSelection = (player)=>{
           if($.inArray(event.currentTarget, player)>=0){
                     // give currentTarget a glow.. in JQUERY
             console.log($(event.currentTarget));
@@ -202,7 +235,7 @@ $(()=>{
           if( player === player2){//<--- could eliminatet he p1 p2 if stmt here using an operation variable +/- that changes with player
                  if(destination=== player+'JumpLeft' && $('#'+P2MoveLeft).attr('src', p1Image)){
                       //THEN MOVE LEFT
-                 }
+
                  }else if(destination=== P2JumpRight && $('#'+P2MoveRight).attr('src', p1Image)){
                       //THEN MOVE RIGHT
                 }
@@ -226,12 +259,12 @@ $(()=>{
 
 
 //====ON CLICK EVENTS HERE
-
-    ($player2).on('click',(event)=>{
-        let selectionTest = validateSelection($player2, event.currentTarget);
+//****CHANGED ALL PLAYER 2 TO NEW PLAYER VARIABLE VALUE TOGGLES BETWEEN PLAYERS
+    (player).on('click',(event)=>{
+        let selectionTest = validateSelection(player, event.currentTarget);
            // $(event.currentTarget).css('border', '3px solid blue' )
         //precise target gets a deselect onclick event goes here.
-        ($player2).off();//<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
+        (player).off();//<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
 
         ($($openSquares)).on('click',(event)=>{
             let destinationTest =selectDestination();
@@ -239,7 +272,8 @@ $(()=>{
             //precise target gets a deselect onclick event goes here.
 
   // console.log($player2);
-            ordainMove($player2, selectionTest, destinationTest);
+            ordainMove(player, selectionTest, destinationTest);
+             changeTurn();
             ($($openSquares)).off();
               // console.log(selectionTest);
               // console.log(destinationTest);
