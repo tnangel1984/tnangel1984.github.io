@@ -30,7 +30,13 @@ const getEvenOdd = (countEvaluated, outputClass)=>{
       }  // determines squareClass2 = odd or even
 }
 
+const sum= (x, y)=>{
+  return x+y;
+}
 
+const subtract= (x, y)=>{
+  return x-y;
+}
 
 // ====ON LOAD EVENTS HERE====
 $(()=>{
@@ -103,19 +109,13 @@ $(()=>{
 
       let alternatePlayer =true;
       let player = $player2; //<---RANDOMIZE LATER
-      let playerOp=()=>{};
+      let playerOp=sum;
 
   // console.log($player2);
   // Is there any advantage to having these as arrays vs an objects??
 
 // ====FUNCTIONS HERE====
-      const sum= (x, y)=>{
-        return x+y;
-      }
 
-      const subtract= (x, y)=>{
-        return x-y;
-      }
       const startGame =() =>{
         // confirm('Ready to begin?')
             //simply need something to indicate that the game as began so turns can be counted.
@@ -147,7 +147,7 @@ $(()=>{
            //Images?
   // countTurn ++
         }
-console.log(Op(2,2));
+
 
         //count the number of turns taken
         //on first turn run a random number generator to determine which player goes first.
@@ -181,8 +181,8 @@ console.log(Op(2,2));
           if(event.currentTarget.children === $('img')){
             console.log("You cannot move here this place is taken");
           }else{
-            console.log('no img- execute evaluation');
-            return $destinatonDiv = $(event.currentTarget);
+            console.log('destination validation 1 complete');
+          return $destinatonDiv = $(event.currentTarget);
           }
       }
 
@@ -191,12 +191,15 @@ console.log(Op(2,2));
         // ***OFF BOARD RESTRICTIONS NEED TO HAPPEN HERE ON THE OUTSIDE
         // ONLY place MOVE restrictions here will run a separate one fo jumps.
           //Lists possible 1st moves... Doesn't change...
-          let sqIdNo =Number(selection.attr('id'));
+          let selectionId = Number(selection.attr('id'));
+          let destinationId = Number(destination.attr('id'));
+          //     console.log((selection.attr('id')+10));
+          // console.log(destination.attr('id')+10);
           // if(player === $player2){//<<<--- NEED to diistinguihs between p1 & p2
-              MoveLeft = playerOp(sqIdNo,7);// <--- could make a playerdirection variable to represent operation
-              MoveRight = playerOp(sqIdNo+9);   // would automatically change with each player,
-              JumpLeft = playerOp(sqIdNo+14);   //thus could avoid the lengthy if statments
-              JumpRight = playerOp(sqIdNo+18);
+              MoveLeft = playerOp(selectionId,7);// <--- could make a playerdirection variable to represent operation
+              MoveRight = playerOp(selectionId+9);   // would automatically change with each player,
+              JumpLeft = playerOp(selectionId+14);   //thus could avoid the lengthy if statments
+              JumpRight = playerOp(selectionId+18);
 
           // }else{
           //     P1MoveLeft = Number(selection.attr('id'))-9;
@@ -211,10 +214,10 @@ console.log(Op(2,2));
 //***UPDATE NEEDE CURRENTLY ONLY P2!!!
 
               //checks that destination selected is within range of allowable moves, then calls move.
-          if(Number(destination.attr('id'))=== MoveLeft ||  Number(destination.attr('id'))=== MoveRight){
-              console.log('heloow im working'); //EXCUTE MOVE!
+          if(destinationId=== MoveLeft || destinationId=== MoveRight){
+              console.log('destination validation 2 complete'); //EXCUTE MOVE!
             move(p2Image, selection, destination)
-          }else if(Number(destination.attr('id'))=== JumpLeft ||  Number(destination.attr('id'))=== JumpRight){
+          }else if(destinationId=== JumpLeft ||  destinationId=== JumpRight){
             //jump(); //EXECUTE JUMP FUNCTION!!
           }
       }
@@ -223,6 +226,7 @@ console.log(Op(2,2));
       const move = (playerImage, selection, destination)=>{
         $(destination).append($('<img>').attr('src', playerImage));
         (selection.children()).remove();
+        console.log('move working');
         //***NEED TO UPDATE ARRAYS!! HERE!
         }
 
@@ -253,7 +257,7 @@ console.log(Op(2,2));
           //*NEED a better function to alternate player 1 & 2 using the same code,  elminating nested if statements,
           }
       }
-
+      //
 
       const JUMP = ()=>{
       // check for oppenent pieces
@@ -282,7 +286,7 @@ console.log(Op(2,2));
 
   // console.log($player2);
             ordainMove(player, selectionTest, destinationTest);
-             changeTurn();
+             // changeTurn();
             ($($openSquares)).off();
               // console.log(selectionTest);
               // console.log(destinationTest);
