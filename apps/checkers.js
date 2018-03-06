@@ -103,6 +103,8 @@ $(()=>{
 
       let alternatePlayer =true;
       let player = $player2; //<---RANDOMIZE LATER
+      let playerOp=()=>{};
+
   // console.log($player2);
   // Is there any advantage to having these as arrays vs an objects??
 
@@ -134,19 +136,18 @@ $(()=>{
         if(alternatePlayer  === true){
           console.log('test2');
            player=$player1;
-           Op = subtract;//<--neeeds to be a function
-           console.log(Op(5,3));
+          return playerOp = subtract;//<--neeeds to be a function
+           console.log(plyerOp(5,3));
            //Images?
         }else{
           console.log('test3');
            player=$player2;
-           Op=sum;// <--neeeds to be a function
-           // console.log(playerOp(2,2));
-           console.log(Op(2,2));
+           return playerOp=sum;// <--neeeds to be a function;
+           console.log(playerOp(2,2));
            //Images?
   // countTurn ++
         }
-
+console.log(Op(2,2));
 
         //count the number of turns taken
         //on first turn run a random number generator to determine which player goes first.
@@ -190,29 +191,30 @@ $(()=>{
         // ***OFF BOARD RESTRICTIONS NEED TO HAPPEN HERE ON THE OUTSIDE
         // ONLY place MOVE restrictions here will run a separate one fo jumps.
           //Lists possible 1st moves... Doesn't change...
+          let sqIdNo =Number(selection.attr('id'));
+          // if(player === $player2){//<<<--- NEED to diistinguihs between p1 & p2
+              MoveLeft = playerOp(sqIdNo,7);// <--- could make a playerdirection variable to represent operation
+              MoveRight = playerOp(sqIdNo+9);   // would automatically change with each player,
+              JumpLeft = playerOp(sqIdNo+14);   //thus could avoid the lengthy if statments
+              JumpRight = playerOp(sqIdNo+18);
 
-          if(player === $player2){//<<<--- NEED to diistinguihs between p1 & p2
-              P2MoveLeft = Number(selection.attr('id'))+7;// <--- could make a playerdirection variable to represent operation
-              P2MoveRight = Number(selection.attr('id'))+9;   // would automatically change with each player,
-              P2JumpLeft = Number(selection.attr('id'))+14;   //thus could avoid the lengthy if statments
-              P2JumpRight = Number(selection.attr('id'))+18;
+          // }else{
+          //     P1MoveLeft = Number(selection.attr('id'))-9;
+          //     P1MoveRight = Number(selection.attr('id'))-7;
+          //     P2JumpRight= Number(selection.attr('id'))-18;
+          //     P2JumpLeft = Number(selection.attr('id'))-14;
+          // }
 
-          }else{
-              P1MoveLeft = Number(selection.attr('id'))-9;
-              P1MoveRight = Number(selection.attr('id'))-7;
-              P2JumpRight= Number(selection.attr('id'))-18;
-              P2JumpLeft = Number(selection.attr('id'))-14;
-          }
           //make an ordain JUMP!
           //----ALTERNATIVE--- posibilities are n rows aways from postion times 7 or 9¡, couls incorporate row count in calcing possibilities. This would allow the computer to identify all pot7ential possiblities on the board for a given piece....!  Could evaluate for any multiple of -7 or 9 so long as they are not blank... but would need to change jump evaluations... !!! Might also be useful for the board restrictions!
 
 //***UPDATE NEEDE CURRENTLY ONLY P2!!!
 
               //checks that destination selected is within range of allowable moves, then calls move.
-          if(Number(destination.attr('id'))=== P2MoveLeft ||  Number(destination.attr('id'))=== P2MoveRight){
+          if(Number(destination.attr('id'))=== MoveLeft ||  Number(destination.attr('id'))=== MoveRight){
               console.log('heloow im working'); //EXCUTE MOVE!
             move(p2Image, selection, destination)
-          }else if(Number(destination.attr('id'))=== P2JumpLeft ||  Number(destination.attr('id'))=== P2JumpRight){
+          }else if(Number(destination.attr('id'))=== JumpLeft ||  Number(destination.attr('id'))=== JumpRight){
             //jump(); //EXECUTE JUMP FUNCTION!!
           }
       }
