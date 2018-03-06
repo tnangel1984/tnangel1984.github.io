@@ -13,13 +13,14 @@
 //             -> is the opponent in the direction of the move? (that matches the jump direction)
 //                  ->> Move
 //                  ->> Remove opponent
-//***Need to re-evalute jump opportunity! For loop around jump? or a function calling jump eval.. would still require a loop.
-//        So, the else statement would need to initiate the loop...for jump evals..
-//        How to exit the loop?
-//Might be best to use a Do while loop here, so that the function is executed at lest once, then tested if needs to be run again.
-//What will be used for the test condtion. Need something thatr indicates that a jump has been executed at least once.
-//     The move condition triggers the jump... could have it return a value  or nest it in yet another for loop... would like to avoid that.
-//*Scoping will be a challenge f you separate functions....
+//             -> RESETS selection & destionation for next evaluation!
+//         LOOPS
+//            -> repeats the evalation based on new destination
+//            -> if no more jumps, alerts user, and sets exit loop condition...
+//
+//
+
+//*Scoping will be a challenge if you separate functions....
 
 
 
@@ -37,7 +38,7 @@
 
 //Question is ohw to call the functions? Is it better to use callbacks or global variables???
 
-//NEED TO MAP GAME PLAY IN GREATER DETAIL!
+
 
 // ====FUNCTIONS HERE====
 
@@ -224,9 +225,10 @@ $(()=>{
               //validates 3 things: That Destination is ordained position, jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
       }else{     //if (destinationId=== JumpLeft || destinationId=== JumpRight){
           let jumpCount = 1;
-
+//***BLANK TEST NEEDED IN LOOPS!!!
           do {
-                //**now its repetitive -_-
+              //validates 3 things: That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
+
               if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', p1Image)){
                   move(p2Image, selection, destination);
                   $('#'+MoveLeft).children().remove();
@@ -249,7 +251,7 @@ $(()=>{
                   jumpCount++;
 
               }else if(jumpCount>1){
-                jumpCount =0;
+                jumpCount =0; //resets jump count; Could use this to add msg celebrating doubles or triples.
                 console.log('There are no more moves');
               }else{
                 console.log('This is not a valid move');
@@ -275,39 +277,11 @@ $(()=>{
           //checks that destination selected is within range of allowable moves, then calls move.
 
 
-
-
-
-
-
 //****  REVISED PLAYER CHANGES AND BUILD TURN TAKING BEFORE MOVING FORWARD!
       // const ordainJump =(player, selection, destination)=>{
         //Move Evaluation may need to be separate from a jump evaluationso that jumps can be looped, jump evaluations need to be looped for double and triple jumps...
         //Run check blanks..
         //NEED TO CONFIRM END OF TURN!! Each time.
-
-
-
-
-        //EXECUTE MOVE
-
-//           let selectionId = Number(selection.attr('id'));
-//           let destinationId = Number(destination.attr('id'));
-//                 //validates 3 things: That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
-//
-//            if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', p1Image)){
-//                   move(p2Image, selection, destination);//THEN MOVE LEFT
-//                   $('#'+MoveLeft).children().remove();
-// //*****WILL NEED TO CHANGE TO PLAYER IMAGE
-//            }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', p1Image)){
-//                   move(playerImage, selection, destination)//THEN MOVE RIGHT
-//                   $('#'+MoveRight).children().remove();
-//            }else{
-//              console.log('This is not a valid move');
-//            }
-//
-//         }
-
 
 
 //====ON CLICK EVENTS HERE
@@ -332,19 +306,6 @@ $(()=>{
        })
        // selectPiece();
     });
-  // console.log( $.inArray(event.currentTarget, player2));
-     // let x = event.currentTarget;
-     // let y = player2[0];
-     // return x === y;
-     // console.log(x); console.log(y); console.log(x===y);
-
-
-      // let z = $(event.currentTarget);
-      // let a = $(player2[0]);
-     // console.log(z); console.log(a); console.log(a===z);
-     // WHY DOESN'T THIS WORK???
-
-
 
 
 // How should selection be limited?  Based on Turns  So first I need to establish that its player 1's turn.
@@ -370,28 +331,19 @@ $(()=>{
 
 
 //TO DO! Next
-
-// BUILD GAME LOGIC
-
-    //
-
-//<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
-
-// (is this separate from a jump function?)
     // 15. Players Turn...!!! Define images here/playerOperation/direction can you define everything here??
-              // leverage player variables to drive changes and eliminate having to write if statement with two separate programs for everything
-    //
-    // 17. BUILD REMOVE OPPONENT Piece Function. --> update arrays.
+    // 18. Update ARRAYS
+    // 19. Need to re-visit event handlers and calls.
+    // 20. TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
+    // 21. Build in Border Limits!
+    // 22. *** FIX CSS Squares move when window shrinks.
 
-//*** special considerations for JUMPS! - Jumps ONLY have ONE option for moving NOT TWO! - Maybe best to run the BLANKS TEST 1ST! To eliminate any possibility of moving at all or move on to the LEAST possible options possibility of  jumping.
+
+
     //special considerations for boundaries! - any square along the sides of the board ONLY has ONE option for moving, NOT tow
-
     // GOAL - Condition FLOW should be structured to progress as follows:
     //   From  zero possibilities for moves to ONE possibility moves to TWO possibility moves.
-   //        ...maybe run border check algorithm first... and separate? as opposed to having it built in to the normal evaluation function...
-
-// *** FIX CSS Squares move when window shrinks.
-
+    //        ...maybe run border check algorithm first... and separate? as opposed to having it built in to the normal evaluation function...
 
 
 
@@ -423,6 +375,10 @@ $(()=>{
 // 13. BUILD Evaluation LOGIC
 // 14. BUILD MOVE Piece Function.
 // 16. BUILD Jump Function
+// 17. add REMOVE OPPONENT
+// 18. LOOP Jump Function!
+
+
 
 
 //===RANDOM COMMENTS===//
