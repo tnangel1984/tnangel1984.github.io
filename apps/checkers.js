@@ -107,7 +107,13 @@ $(()=>{
   // Is there any advantage to having these as arrays vs an objects??
 
 // ====FUNCTIONS HERE====
+      const sum= (x, y)=>{
+        return x+y;
+      }
 
+      const subtract= (x, y)=>{
+        return x-y;
+      }
       const startGame =() =>{
         // confirm('Ready to begin?')
             //simply need something to indicate that the game as began so turns can be counted.
@@ -128,14 +134,15 @@ $(()=>{
         if(alternatePlayer  === true){
           console.log('test2');
            player=$player1;
-           playerOperation = Math.subtract;//<--neeeds to be a function
-           console.log(Math.subtract);
+           Op = subtract;//<--neeeds to be a function
+           console.log(Op(5,3));
            //Images?
         }else{
           console.log('test3');
            player=$player2;
-           playerOp=()=>Math.add{};// <--neeeds to be a function
-           console.log(playerOp(2,2));
+           Op=sum;// <--neeeds to be a function
+           // console.log(playerOp(2,2));
+           console.log(Op(2,2));
            //Images?
   // countTurn ++
         }
