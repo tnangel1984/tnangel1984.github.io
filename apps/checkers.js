@@ -1,12 +1,31 @@
-// console.log('test');
-// console.log($);
+//GAME PLAY Logic//
+// CLICK1 --> selection ok?
+//          > is it the player's piece?
+//
+// CLICK2 --> destination ok?
+//          > is it blank? terminates here...
+//          |
+//          |   -> is it an ordained Move #?
+//                  ->> Move
+//          OR
+//             -> is it an ordained Jump #?
+//             -> is it an opponent that's being jumped? (is it in a move position)
+//             -> is the opponent in the direction of the move? (that matches the jump direction)
+//                  ->> Move
+//                  ->> Remove opponent
+//***Need to re-evalute jump opportunity! For loop around jump? or a function calling jump eval.. would still require a loop.
+//        So, the else statement would need to initiate the loop...for jump evals..
+//        How to exit the loop?
+//Might be best to use a Do while loop here, so that the function is executed at lest once, then tested if needs to be run again.
+//What will be used for the test condtion. Need something thatr indicates that a jump has been executed at least once.
+//     The move condition triggers the jump... could have it return a value  or nest it in yet another for loop... would like to avoid that.
+//*Scoping will be a challenge f you separate functions....
+
 
 
 //****LIMIT WHAT THE PLAYER CAN DO TO GUIDE THEM TO THE CORRECT PROGRAM FLOW!
+///***NEED TO FIGURE OUT FUNCTION FLOW
 
-///***NEED TO FIGURE OUT FUNCTION FLOW
-///***NEED TO FIGURE OUT FUNCTION FLOW
-///***NEED TO FIGURE OUT FUNCTION FLOW
 
 //  ---- Alternative to changing the eventHandler is to have three separate ones tied to 3 different dynamic arrays that are constanty updating... unless you tie player pieces to images you can re-append the images and the onclick event would always follow.
 // If player & playable   3 arrays constantly beign update...still has to happen
@@ -110,164 +129,184 @@ $(()=>{
       let alternatePlayer =true;
       let player = $player2; //<---RANDOMIZE LATER
       let playerOp=sum;
+      let playerImage = p2Image;
+      let opponentImage = p1Image;
 
   // console.log($player2);
   // Is there any advantage to having these as arrays vs an objects??
 
 // ====FUNCTIONS HERE====
+  const startGame =() =>{
+    // confirm('Ready to begin?')
+        //simply need something to indicate that the game as began so turns can be counted.
+    //1. Initiate play, select player at random.
+    //2. Load player into player variable.
+    //3. Do nothing... play should be initiated by on Click events...
+    //4. How to loop from there.
+    //5. in order to initate play, player turn has to be known. Because the onclick event is tied to player sets....
+    //How to
 
-      const startGame =() =>{
-        // confirm('Ready to begin?')
-            //simply need something to indicate that the game as began so turns can be counted.
-        //1. Initiate play, select player at random.
-        //2. Load player into player variable.
-        //3. Do nothing... play should be initiated by on Click events...
-        //4. How to loop from there.
-        //5. in order to initate play, player turn has to be known. Because the onclick event is tied to player sets....
-        //How to
+  }
 
+  const changeTurn = (alternate) =>{
+    console.log('test');
+    alternatePlayer=!alternatePlayer;
+           //sets altP to the opposite value. i.e. changes it from true to not true: false
+    if(alternatePlayer  === true){
+      console.log('test2');
+       player=$player1;
+      return playerOp = subtract;//<--neeeds to be a function
+       console.log(plyerOp(5,3));
+       //Images?
+    }else{
+      console.log('test3');
+       player=$player2;
+       return playerOp=sum;// <--neeeds to be a function;
+       console.log(playerOp(2,2));
+       //Images?
+// countTurn ++
+    }
+
+
+    //count the number of turns taken
+    //on first turn run a random number generator to determine which player goes first.
+    //alternate every turn there after TOGGLE True/FALSE
+    //NEEDS PASS THE PLAYER INTO THE SELECT PIECE FUNCTION!
+    // !!!Returns playerArray
+
+    // changes player array, changes player img. Need to have one point of trigger.
+    //change player turn >>>
+  }
+
+  const validateSelection = (player)=>{
+      if($.inArray(event.currentTarget, player)>=0){
+                // give currentTarget a glow.. in JQUERY
+        console.log($(event.currentTarget));
+        return  $selectionDiv =$(event.currentTarget)
+      }else{
+        alert('This is not Your piece.')
       }
+  }
 
-      const changeTurn = (alternate) =>{
-        console.log('test');
-        alternatePlayer=!alternatePlayer;
-               //sets altP to the opposite value. i.e. changes it from true to not true: false
-
-        if(alternatePlayer  === true){
-          console.log('test2');
-           player=$player1;
-          return playerOp = subtract;//<--neeeds to be a function
-           console.log(plyerOp(5,3));
-           //Images?
-        }else{
-          console.log('test3');
-           player=$player2;
-           return playerOp=sum;// <--neeeds to be a function;
-           console.log(playerOp(2,2));
-           //Images?
-  // countTurn ++
-        }
-
-
-        //count the number of turns taken
-        //on first turn run a random number generator to determine which player goes first.
-        //alternate every turn there after TOGGLE True/FALSE
-        //NEEDS PASS THE PLAYER INTO THE SELECT PIECE FUNCTION!
-        // !!!Returns playerArray
-
-        // changes player array, changes player img. Need to have one point of trigger.
-        //change player turn >>>
-      }
-
-      const validateSelection = (player)=>{
-          if($.inArray(event.currentTarget, player)>=0){
-                    // give currentTarget a glow.. in JQUERY
-            console.log($(event.currentTarget));
-            return  $selectionDiv =$(event.currentTarget)
-          }else{
-            alert('This is not Your piece.')
-          }
-      }
-
-              // console.log(event.currentTarget);
-                // console.log(player);
-                // console.log($(event.currentTarget));
-                // console.log($.inArray($(event.currentTarget),player));
-              // const selectPiece = (event)=>{
-              // }
-
-      const selectDestination = ()=>{
-              // check if img is appended
-          if(event.currentTarget.children === $('img')){
-            console.log("You cannot move here this place is taken");
-          }else{
-            console.log('destination validation 1 complete');
-          return $destinatonDiv = $(event.currentTarget);
-          }
-      }
-
-      //
-      const ordainMove = (player, selection, destination)=>{
-        // ***OFF BOARD RESTRICTIONS NEED TO HAPPEN HERE ON THE OUTSIDE
-        // ONLY place MOVE restrictions here will run a separate one fo jumps.
-          //Lists possible 1st moves... Doesn't change...
-          let selectionId = Number(selection.attr('id'));
-          let destinationId = Number(destination.attr('id'));
-          //     console.log((selection.attr('id')+10));
-          // console.log(destination.attr('id')+10);
-          // if(player === $player2){//<<<--- NEED to diistinguihs between p1 & p2
-              MoveLeft = playerOp(selectionId,7);// <--- could make a playerdirection variable to represent operation
-              MoveRight = playerOp(selectionId+9);   // would automatically change with each player,
-              JumpLeft = playerOp(selectionId+14);   //thus could avoid the lengthy if statments
-              JumpRight = playerOp(selectionId+18);
-
-          // }else{
-          //     P1MoveLeft = Number(selection.attr('id'))-9;
-          //     P1MoveRight = Number(selection.attr('id'))-7;
-          //     P2JumpRight= Number(selection.attr('id'))-18;
-          //     P2JumpLeft = Number(selection.attr('id'))-14;
+          // console.log(event.currentTarget);
+            // console.log(player);
+            // console.log($(event.currentTarget));
+            // console.log($.inArray($(event.currentTarget),player));
+          // const selectPiece = (event)=>{
           // }
 
-          //make an ordain JUMP!
-          //----ALTERNATIVE--- posibilities are n rows aways from postion times 7 or 9¡, couls incorporate row count in calcing possibilities. This would allow the computer to identify all pot7ential possiblities on the board for a given piece....!  Could evaluate for any multiple of -7 or 9 so long as they are not blank... but would need to change jump evaluations... !!! Might also be useful for the board restrictions!
+  const selectDestination = ()=>{
+          // check if img is appended
+      if(event.currentTarget.children === $('img')){
+        console.log("You cannot move here this place is taken");
+      }else{
+        console.log('destination validation 1 complete');
+      return $destinatonDiv = $(event.currentTarget);
+      }
+  }
+
+ //  //
+  const ordainMove = (player, selection, destination)=>{
+    // ***OFF BOARD RESTRICTIONS NEED TO HAPPEN HERE ON THE OUTSIDE
+    //**SHOULD THIS BE 3 SEPARATE FUNCTIONS??? Definitions, Moves, Jumps?
+      let selectionId = Number(selection.attr('id'));
+      let destinationId = Number(destination.attr('id'));
+
+    //Lists possible 1st moves... Doesn't change...
+      MoveLeft = playerOp(selectionId,7);
+      MoveRight = playerOp(selectionId,9);
+      JumpLeft = playerOp(selectionId,14);
+      JumpRight = playerOp(selectionId,18);
+
+      if(destinationId=== MoveLeft || destinationId=== MoveRight){
+            console.log('destination validation 2 complete'); //EXCUTE MOVE!
+            move(p2Image, selection, destination);
+              //validates 3 things: That Destination is ordained position, jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
+      }else{     //if (destinationId=== JumpLeft || destinationId=== JumpRight){
+          let jumpCount = 1;
+
+          do {
+                //**now its repetitive -_-
+              if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', p1Image)){
+                  move(p2Image, selection, destination);
+                  $('#'+MoveLeft).children().remove();
+          //***Reset Selection & Destination ***NEED TO MAKE THIS INTO A FUNCTION!
+                  selection = destination;
+                  selectionId = destinationId;
+                  destinationId = playerOp(selectionId,14);
+                  destination = destination.attr('id',destinationId);
+      //*****WILL NEED TO CHANGE TO PLAYER IMAGE
+                  jumpCount++;
+
+              }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', p1Image)){
+                  move(playerImage, selection, destination);//THEN MOVE RIGHT
+                  $('#'+MoveRight).children().remove();  //jump(); //EXECUTE JUMP FUNCTION!!
+                  destination = MoveRight;
+                  selection = destination;
+                  selectionId = destinationId;
+                  destinationId = playerOp(selectionId,14);
+                  destination = destination.attr('id',destinationId);
+                  jumpCount++;
+
+              }else if(jumpCount>1){
+                jumpCount =0;
+                console.log('There are no more moves');
+              }else{
+                console.log('This is not a valid move');
+              }
+          }
+          // WHAT IS THE CORRECT EXIT CONDITION?? Exit loop when there are no more Jump conditions which means the message changes
+          while(jumpCount!==0);
+    }
+ }
+
+ const move = (playerImage, selection, destination)=>{
+     $(destination).append($('<img>').attr('src', playerImage));
+     (selection.children()).remove();
+     console.log('move working');
+     //***NEED TO UPDATE ARRAYS!! HERE!
+     }
+
+      //make an ordain JUMP!
+      //----ALTERNATIVE--- posibilities are n rows aways from postion times 7 or 9¡, couls incorporate row count in calcing possibilities. This would allow the computer to identify all pot7ential possiblities on the board for a given piece....!  Could evaluate for any multiple of -7 or 9 so long as they are not blank... but would need to change jump evaluations... !!! Might also be useful for the board restrictions!
 
 //***UPDATE NEEDE CURRENTLY ONLY P2!!!
 
-              //checks that destination selected is within range of allowable moves, then calls move.
-          if(destinationId=== MoveLeft || destinationId=== MoveRight){
-              console.log('destination validation 2 complete'); //EXCUTE MOVE!
-            move(p2Image, selection, destination)
-          }else if(destinationId=== JumpLeft ||  destinationId=== JumpRight){
-            //jump(); //EXECUTE JUMP FUNCTION!!
-          }
-      }
+          //checks that destination selected is within range of allowable moves, then calls move.
 
 
-      const move = (playerImage, selection, destination)=>{
-        $(destination).append($('<img>').attr('src', playerImage));
-        (selection.children()).remove();
-        console.log('move working');
-        //***NEED TO UPDATE ARRAYS!! HERE!
-        }
+
+
 
 
 
 //****  REVISED PLAYER CHANGES AND BUILD TURN TAKING BEFORE MOVING FORWARD!
-      const ordainJump =(player, selection, destination)=>{
+      // const ordainJump =(player, selection, destination)=>{
         //Move Evaluation may need to be separate from a jump evaluationso that jumps can be looped, jump evaluations need to be looped for double and triple jumps...
-        //Opponent positions LIMIT the direction of the jump!
         //Run check blanks..
-        //CONFIRM THAT AN OPPONENT PIECE IS IN  MOVELEFT/MOVE RIGHT
-        //IF JUMP remove opponent piece!
-        // NEED TO PASS PLAYER IMAGE INTO  A VARIABLE FOR USE HERE AND FOR PIEE SELECTIONS!
-        // Could have an array of images to choos from not just red black and white.
-        //***player img depend on p1 or p2, reset on eah turn
-        //NEED TO CONFIRM END OF TURN!! Eache time.
+        //NEED TO CONFIRM END OF TURN!! Each time.
+
+
+
 
         //EXECUTE MOVE
-          if( player === player2){//<--- could eliminatet he p1 p2 if stmt here using an operation variable +/- that changes with player
-                 if(destination=== player+'JumpLeft' && $('#'+P2MoveLeft).attr('src', p1Image)){
-                      //THEN MOVE LEFT
 
-                 }else if(destination=== P2JumpRight && $('#'+P2MoveRight).attr('src', p1Image)){
-                      //THEN MOVE RIGHT
-                }
-                  //if it's 2 spaces awy and the space next to it has the oppenents img!!! less complex than  searchin an array. MIGHT WANT TO CREATE PLAYER /OPPONENT variables.......
-          }else{
-          //*NEED a better function to alternate player 1 & 2 using the same code,  elminating nested if statements,
-          }
-      }
-      //
-
-      const JUMP = ()=>{
-      // check for oppenent pieces
-      //remove oppoinent piece...
-      }
-
-
-
-
-
+//           let selectionId = Number(selection.attr('id'));
+//           let destinationId = Number(destination.attr('id'));
+//                 //validates 3 things: That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
+//
+//            if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', p1Image)){
+//                   move(p2Image, selection, destination);//THEN MOVE LEFT
+//                   $('#'+MoveLeft).children().remove();
+// //*****WILL NEED TO CHANGE TO PLAYER IMAGE
+//            }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', p1Image)){
+//                   move(playerImage, selection, destination)//THEN MOVE RIGHT
+//                   $('#'+MoveRight).children().remove();
+//            }else{
+//              console.log('This is not a valid move');
+//            }
+//
+//         }
 
 
 
@@ -341,7 +380,7 @@ $(()=>{
 // (is this separate from a jump function?)
     // 15. Players Turn...!!! Define images here/playerOperation/direction can you define everything here??
               // leverage player variables to drive changes and eliminate having to write if statement with two separate programs for everything
-    // 16. BUILD Jump Function
+    //
     // 17. BUILD REMOVE OPPONENT Piece Function. --> update arrays.
 
 //*** special considerations for JUMPS! - Jumps ONLY have ONE option for moving NOT TWO! - Maybe best to run the BLANKS TEST 1ST! To eliminate any possibility of moving at all or move on to the LEAST possible options possibility of  jumping.
@@ -383,7 +422,7 @@ $(()=>{
 // 12. SELECT DESTINATION div event.target/currentTarget...
 // 13. BUILD Evaluation LOGIC
 // 14. BUILD MOVE Piece Function.
-
+// 16. BUILD Jump Function
 
 
 //===RANDOM COMMENTS===//
@@ -418,3 +457,18 @@ $(()=>{
 // //Lists possible 1st moves... Doesn't change...
 // console.log(player);
 // console.log($player2);
+
+
+//====== OLD FORMAT FOR ORDAIN MOVE  ===
+// }else{
+//     P1MoveLeft = Number(selection.attr('id'))-9;
+//     P1MoveRight = Number(selection.attr('id'))-7;
+//     P1JumpRight= Number(selection.attr('id'))-18;
+//     P1JumpLeft = Number(selection.attr('id'))-14;
+// }
+
+//====JUMP RULES====
+ //Jumps are always #rowsAway*7 or #rowsAway*9 from current position.
+ //piece jumped must belong to the opponent.
+//Opponent positions LIMIT the direction of the jump!
+// NEED TO PASS PLAYER IMAGE INTO  A VARIABLE FOR USE HERE AND FOR PIEE SELECTIONS!
