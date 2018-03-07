@@ -50,36 +50,23 @@ const getEvenOdd = (countEvaluated, outputClass)=>{
       }  // determines squareClass2 = odd or even
 }
 
-const sum= (x, y)=>{
-  return x+y;
-}
-
-const subtract= (x, y)=>{
-  return x-y;
-}
 
 // ====ON LOAD EVENTS HERE====
 $(()=>{
 
   // ====BUILD THE BOARD ===== // creates a container,  creates player divs, appends to body
         $('body').append($('<container>'));
-
-
-        //APPENDS TO PLAYER DIV BUT ORDER MATTERS!!
-    const $player1Div =$('<div>').addClass('player1');
-    const $player2Div =$('<div>').addClass('player2');
+            //creates player 1&2 divs
+        const $player1Div =$('<div>').addClass('player1');
+        const $player2Div =$('<div>').addClass('player2');
 
   // ====VARIABLES HERE====
-        let squareClass="";
-        let rowClass2="";
-        let squareClass2="";
-        let rowCount =1;
-        let limit =8;
+        let squareClass=""; let rowClass2=""; let squareClass2="";  let rowCount =1; let limit =8;
                 // creates rows 1-8
         for (let rowCount=1; rowCount<=limit; rowCount++){
             rowClass2=getEvenOdd(rowCount,rowClass2);
             $('container').append($('<div>').addClass('row').addClass(rowClass2+'Row').attr('id','row'+rowCount));
-  // Possibly move to function??
+  // Possibly move to function??// appends rows to respective player divs, but skips the middle tow rows
             if( rowCount<=3){
               $($player2Div).append($('#row'+rowCount));
               $('container').prepend($player2Div);
@@ -91,47 +78,39 @@ $(()=>{
                   for(j=1; j<=8; j++){
                       let squareCount = (rowCount-1)*8+j;
                       squareClass2= getEvenOdd(squareCount, squareClass2);
-                      $('#row'+rowCount)
-                      .append($('<div>')
-                          .addClass('square')
-                          .addClass(squareClass2)
-                          .attr('id',squareCount)
-                          .text(squareCount));
-                  }   // creates squares 1-8 in each row ,
+                      $('#row'+rowCount).append($('<div>').addClass('square').addClass(squareClass2).attr('id',squareCount).text(squareCount));
+                  }
           }
-          //
-
 
   //===SQUARES: PLAYABLE vs NON-PLAYABLE ===
           //Creating a variable to separate playable/non-playable squares & pieces...
-
       const $playableSquares = $.merge($('.oddRow').find('div.even'), $('.evenRow').find('div.odd'));
       const $nonPlayableSquares = $.merge($('.oddRow').find('div.odd'), $('.evenRow').find('div.even'));
-
       const $openSquares = $.merge($('#row4').find('div.odd'),$('#row5').find('div.even'));
-      // console.log($openSquares);
+
   // ===PIECES: PLAYER STAGING SET UP/ DEFINES PLAYERS PIECES (really player squares grouped by player)
       const $player1 = $.merge($('.player1').find($('.oddRow').find('div.even')), $('.player1').find($('.evenRow').find('div.odd')));
-
       const $player2 = $.merge($('.player2').find($('.oddRow').find('div.even')), $('.player2').find($('.evenRow').find('div.odd')));
                 //$.merge() returns an array of jquery elements; not actual objects (if javascript arrays are input it returns normal js arrays)
                     // console.log($('.player2').find($('.oddRow').find('div.even')));
                     // console.log($('.player2').find($('.evenRow').find('div.odd')));
                     // console.log($.merge($('.player2').find($('.oddRow').find('div.even')), $('.player2').find($('.evenRow').find('div.odd'))));
-
-
       const p1Image = 'images/blk.jpg';
       const p2Image = 'images/wht.jpg';
 
       $player1.append($('<img>').attr('src', p1Image));
       $player2.append($('<img>').attr('src', p2Image));
 
-
-      let alternatePlayer =true;
+//===STAGE GAME create intial game play functions & variables for SetUp ===
+const sum= (x, y)=>{return x+y;}
+const subtract= (x, y)=>{return x-y;}
       let player = $player2; //<---RANDOMIZE LATER
+      let alternatePlayer =true;
       let playerOp=sum;
       let playerImage = p2Image;
       let opponentImage = p1Image;
+      let $selectionDiv;
+      let $destinatonDiv;
 
   // console.log($player2);
   // Is there any advantage to having these as arrays vs an objects??
@@ -149,21 +128,16 @@ $(()=>{
 
   }
 
-  const changeTurn = (alternate) =>{
-    console.log('test');
+  const changeTurn = () =>{
     alternatePlayer=!alternatePlayer;
            //sets altP to the opposite value. i.e. changes it from true to not true: false
     if(alternatePlayer  === true){
-      console.log('test2');
-       player=$player1;
-      return playerOp = subtract;//<--neeeds to be a function
-       console.log(plyerOp(5,3));
+      player=$player2;
+      playerOp = subtract;//<--neeeds to be a functio
        //Images?
     }else{
-      console.log('test3');
-       player=$player2;
-       return playerOp=sum;// <--neeeds to be a function;
-       console.log(playerOp(2,2));
+       player=$player1;
+       playerOp=sum;// <--neeeds to be a function;
        //Images?
 // countTurn ++
     }
@@ -183,7 +157,7 @@ $(()=>{
       if($.inArray(event.currentTarget, player)>=0){
                 // give currentTarget a glow.. in JQUERY
         console.log($(event.currentTarget));
-        return  $selectionDiv =$(event.currentTarget)
+        $selectionDiv =$(event.currentTarget)
       }else{
         alert('This is not Your piece.')
       }
@@ -202,7 +176,7 @@ $(()=>{
         console.log("You cannot move here this place is taken");
       }else{
         console.log('destination validation 1 complete');
-      return $destinatonDiv = $(event.currentTarget);
+       $destinatonDiv = $(event.currentTarget);
       }
   }
 
@@ -286,23 +260,31 @@ $(()=>{
 
 //====ON CLICK EVENTS HERE
 //****CHANGED ALL PLAYER 2 TO NEW PLAYER VARIABLE VALUE TOGGLES BETWEEN PLAYERS
-    (player).on('click',(event)=>{
-        let selectionTest = validateSelection(player, event.currentTarget);
+    player.on('click',(event)=>{
+      validateSelection(player, event.currentTarget);
+      (player).off;
+      // $(event.currentTarget).trigger('reset');
+        // let selectionTest = validateSelection(player, event.currentTarget);
            // $(event.currentTarget).css('border', '3px solid blue' )
         //precise target gets a deselect onclick event goes here.
-        (player).off();//<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
+      //<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
 
+// console.log(selectionTest);
         ($($openSquares)).on('click',(event)=>{
-            let destinationTest =selectDestination();
+           selectDestination();
+            // let destinationTest =selectDestination();
             // console.log(selectDestination());
             //precise target gets a deselect onclick event goes here.
 
   // console.log($player2);
-            ordainMove(player, selectionTest, destinationTest);
-             // changeTurn();
+            ordainMove(player, $selectionDiv, $destinatonDiv);
+            changeTurn();
+            // console.log(player);
+            // console.log(playerOp);
             ($($openSquares)).off();
               // console.log(selectionTest);
               // console.log(destinationTest);
+
        })
        // selectPiece();
     });
@@ -346,7 +328,47 @@ $(()=>{
     //        ...maybe run border check algorithm first... and separate? as opposed to having it built in to the normal evaluation function...
 
 
+// ========= OUTLINE =========
+  //===Define functions need to create and stage game===
+  // getEvenOdd()
+  // sum()
+  // subtract()
 
+//ON LOAD -
+  //===CREATE BOARD===
+    //  APPEND container to body
+    //  create Divs player 1 & player 2 (basically containers for rows)
+    //  create variables for class names of sqs & rows, and for rowCount & limit
+    //  For Loop to Create rows
+    //    If stmt to APPEND rows divs to player Divs
+    //    Nested for loop to create squares divs & APPENDS squares to rows.
+
+  //===STAGE BOARD===
+    // create Arrays for playable (black), nonplayable (red), and open (2 rows of black squares not appended to initial playerdivs).
+    // create Arrays of the SQUARES in each players div collection (merging arrays)
+    // create player image VARIABLES
+    // APPENDs respective images to the squares in each players array
+
+  //===STAGE GAME ===
+    //---Create game play Functions & Variables, set values for initial play--
+    //create sum & subtract functions (for player Ops).
+    //create & define player,playerOp,playerImage,opponentImage, and alternatePlayer.
+            //These are the starting values, but will change as turns change.
+
+  //===ALL OTHER GAME FUNCTIONS===
+    // changeTurn()
+    // validateSelection()
+    // selectDestination()
+    // ordainMove()
+    //
+    //
+    // move()
+
+//=== EVENT LISTENERS/HANDELERS ===
+    // player.onclick ()
+    //    calls validate selections and RETURNS A VALUE
+    // openSquares.onclick()
+    //
 
 //DONE!
 //1.Build Board. 8x8
