@@ -1,15 +1,27 @@
-*{border: 1px solid gold;
+*{
   color: white;
+  /* border: 1px solid gold; */
 }
 
+h1{
+  color: black;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  font-size: 60px;
+}
 .container{
+  border: 1px solid gold;
   max-width: 1000px;
   max-height: 1000px;
 }
 .row{margin: 0 auto;
+  border: 1px solid gold;
   max-width: 1000px;
   max-height: 1000px;}
 .square{
+  border: 1px solid gold;
   display:inline-block;
   /* border: 1px solid green; */
   height: 100px;
