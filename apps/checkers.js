@@ -1,43 +1,5 @@
-//GAME PLAY Logic//
-// CLICK1 --> selection ok?
-//          > is it the player's piece?
-//
-// CLICK2 --> destination ok?
-//          > is it blank? terminates here...
-//          |
-//          |   -> is it an ordained Move #?
-//                  ->> Move
-//          OR
-//             -> is it an ordained Jump #?
-//             -> is it an opponent that's being jumped? (is it in a move position)
-//             -> is the opponent in the direction of the move? (that matches the jump direction)
-//                  ->> Move
-//                  ->> Remove opponent
-//             -> RESETS selection & destionation for next evaluation!
-//         LOOPS
-//            -> repeats the evalation based on new destination
-//            -> if no more jumps, alerts user, and sets exit loop condition...
-//
-//
-
-//*Scoping will be a challenge if you separate functions....
-
-
 
 //****LIMIT WHAT THE PLAYER CAN DO TO GUIDE THEM TO THE CORRECT PROGRAM FLOW!
-///***NEED TO FIGURE OUT FUNCTION FLOW
-
-
-//  ---- Alternative to changing the eventHandler is to have three separate ones tied to 3 different dynamic arrays that are constanty updating... unless you tie player pieces to images you can re-append the images and the onclick event would always follow.
-// If player & playable   3 arrays constantly beign update...still has to happen
-// If image re-append no changes
-// If total board -reassign once in program float... re-assignment happend each time...
-// Leaves open to many useless possibilities for clicking squares. Limit users control flow and for game progression.
-
-//GOAL is to tie listeners to variables, then change the varibale definitions by dynamically updating the arrays behind them, or switching between arrays(on turn). This way the on click functions are never touched and this limitst the number of points of change...
-
-//Question is ohw to call the functions? Is it better to use callbacks or global variables???
-
 
 
 // ====FUNCTIONS HERE====
@@ -91,10 +53,8 @@ $(()=>{
   // ===PIECES: PLAYER STAGING SET UP/ DEFINES PLAYERS PIECES (really player squares grouped by player)
       const $player1 = $.merge($('.player1').find($('.oddRow').find('div.even')), $('.player1').find($('.evenRow').find('div.odd')));
       const $player2 = $.merge($('.player2').find($('.oddRow').find('div.even')), $('.player2').find($('.evenRow').find('div.odd')));
-                //$.merge() returns an array of jquery elements; not actual objects (if javascript arrays are input it returns normal js arrays)
-                    // console.log($('.player2').find($('.oddRow').find('div.even')));
-                    // console.log($('.player2').find($('.evenRow').find('div.odd')));
-                    // console.log($.merge($('.player2').find($('.oddRow').find('div.even')), $('.player2').find($('.evenRow').find('div.odd'))));
+                //$.merge() returns an array of html elements; not actual objects (if javascript arrays are input it returns normal js arrays)
+
       const p1Image = 'images/blk.jpg';
       const p2Image = 'images/wht.jpg';
 
@@ -213,8 +173,8 @@ console.log(selectionId);console.log(destinationId);
           let jumpCount = 1;
 //***BLANK TEST NEEDED IN LOOPS!!!
           do {
-              //validates 3 things: That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
-debugger
+              //validates 3 things:
+              // That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
               if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', opponentImage)){
                   move(playerImage, selection, destination);
                   $('#'+MoveLeft).children().remove();
@@ -223,7 +183,7 @@ debugger
                   selectionId = destinationId;
                   destinationId = playerOp(selectionId,14);
                   destination = destination.attr('id',destinationId);
-      //*****WILL NEED TO CHANGE TO PLAYER IMAGE
+      //*****WILL NEED TO CHANGE TO PLAYER IMAGE????
                   jumpCount++;
 
               }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', opponentImage)){
@@ -237,7 +197,7 @@ debugger
                   jumpCount++;
 
               }else if(jumpCount>1){
-                jumpCount =0; //resets jump count; Could use this to add msg celebrating doubles or triples.
+                jumpCount =0; //exit loop condition.
                 console.log('There are no more moves');
               }else{
                 debugger
@@ -245,7 +205,7 @@ debugger
                 console.log('This is not a valid move');
               }
           }
-          // WHAT IS THE CORRECT EXIT CONDITION?? Exit loop when there are no more Jump conditions which means the message changes
+
           while(jumpCount!==0);
     }
  }
@@ -265,80 +225,39 @@ debugger
 }
 
       //make an ordain JUMP!
-      //----ALTERNATIVE--- posibilities are n rows aways from postion times 7 or 9¡, couls incorporate row count in calcing possibilities. This would allow the computer to identify all pot7ential possiblities on the board for a given piece....!  Could evaluate for any multiple of -7 or 9 so long as they are not blank... but would need to change jump evaluations... !!! Might also be useful for the board restrictions!
 
-//***UPDATE NEEDE CURRENTLY ONLY P2!!!
-
-          //checks that destination selected is within range of allowable moves, then calls move.
-
-
-//****  REVISED PLAYER CHANGES AND BUILD TURN TAKING BEFORE MOVING FORWARD!
-      // const ordainJump =(player, selection, destination)=>{
-        //Move Evaluation may need to be separate from a jump evaluationso that jumps can be looped, jump evaluations need to be looped for double and triple jumps...
-        //Run check blanks..
         //NEED TO CONFIRM END OF TURN!! Each time.
 
 
 //====ON CLICK EVENTS HERE
-//****CHANGED ALL PLAYER 2 TO NEW PLAYER VARIABLE VALUE TOGGLES BETWEEN PLAYERS
 const playGame =()=>{
-  console.log('lets play!');
-  $selectionDiv='';
-  $destinationDiv='';
+    console.log('lets play!');
+    $selectionDiv='';
+    $destinationDiv='';
 
     player.off().one('click',(event)=>{
-
-      // player.off(event);
-      // debugger
       validateSelection(player);
       console.log($selectionDiv);
       console.log('selction executed');
-      // (player).off();
-                 // $(event.currentTarget).css('border', '3px solid blue' )
+       // $(event.currentTarget).css('border', '3px solid blue' )
               //precise target gets a deselect onclick event goes here.
               //<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
     });
 
     $openSquares.off().one('click',(event)=>{
-        // player.off(event);
-        // event.preventDefault();
-        // debugger
         console.log($selectionDiv);
         if($selectionDiv=== ''){
           playGame();
         }else{
-
-          // $openSquares.off();
-          // debugger
-             selectDestination();
-             // debugger
-              console.log($selectionDiv);
-              //precise target gets a deselect onclick event goes here.
-              ordainMove(player, $selectionDiv, $destinationDiv);
-              changeTurn();
+          selectDestination();
+          console.log($selectionDiv);
+          //precise target gets a deselect onclick event goes here.
+          ordainMove(player, $selectionDiv, $destinationDiv);
+          changeTurn();
           }
    });
-       // selectPiece();
-
 };
 
-
-
-// How should selection be limited?  Based on Turns  So first I need to establish that its player 1's turn.
-//Then i need  that player to be passed through a parameter  and it's peices selected/ turned ON.
-//Then i need the peice clicked to be checked to ensure that they are in the players set of playable peices
-  // $('img').on('click', selectDestination);
-//Destination must be Nested... reassign img listener...
-
-// Two options, place event listener on ALL squares then run allowables
-// Place event listerns on SOME squares... then run allowables
-//if THE listener is on all squares you can make alerts for red squared moves...
-// This would require the same logic to limit squares in the first place so mght as well build that logic..
-//...time to create variables for playable spaces.
-
-//The ONLY way to do this is via objects or arrays...
-
-// May Likely result in a change to the player piece staging portion of the code.
 playGame();
 })
 
@@ -346,16 +265,13 @@ playGame();
 
 
 
-
 //TO DO! Next
-    // 15. Players Turn...!!! Define images here/playerOperation/direction can you define everything here??
-    // 18. Update ARRAYS
-    // 19. Need to re-visit event handlers and calls.
+
     // 20. TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
     // 21. Build in Border Limits!
+    // 22. ****CHECK ALL STARS! ****
+    // 22. If incorrect piece or invalid move need to reset game play NOT end turn.
     // 22. *** FIX CSS Squares move when window shrinks.
-
-
 
     //special considerations for boundaries! - any square along the sides of the board ONLY has ONE option for moving, NOT tow
     // GOAL - Condition FLOW should be structured to progress as follows:
@@ -434,9 +350,34 @@ playGame();
 // 16. BUILD Jump Function
 // 17. add REMOVE OPPONENT
 // 18. LOOP Jump Function!
+// 19. Players Turn...!!! Define images here/playerOperation/direction can you define everything here??
+// 20. Need to re-visit event handlers and calls.
+// 21. Update ARRAYS
+// 22. Need to re-visit event handlers and calls.
 
+//GAME PLAY Logic//
+// CLICK1 --> selection ok?
+//          > is it the player's piece?
+//
+// CLICK2 --> destination ok?
+//          > is it blank? terminates here...
+//          |
+//          |   -> is it an ordained Move #?
+//                  ->> Move
+//          OR
+//             -> is it an ordained Jump #?
+//             -> is it an opponent that's being jumped? (is it in a move position)
+//             -> is the opponent in the direction of the move? (that matches the jump direction)
+//                  ->> Move
+//                  ->> Remove opponent
+//             -> RESETS selection & destionation for next evaluation!
+//         LOOPS
+//            -> repeats the evalation based on new destination
+//            -> if no more jumps, alerts user, and sets exit loop condition...
+//
+//
 
-
+//*Scoping will be a challenge if you separate functions...
 
 //===RANDOM COMMENTS===//
 // Player 1 /Player 2: oddRow evensquares Nested For Loop?  for rowOdd in Rows <=3
@@ -505,3 +446,9 @@ playGame();
 //    })
 //    });
    // selectPiece();
+// === Change variables to update onclick functions===
+//GOAL is to tie listeners to variables, then change the varibale definitions by dynamically updating the arrays behind them, or switching between arrays(on turn). This way the on click functions are never touched and this limitst the number of points of change...
+
+//Question is ohw to call the functions? Is it better to use callbacks or global variables???
+
+   //----ALTERNATIVE--- posibilities are n rows aways from postion times 7 or 9¡, couls incorporate row count in calcing possibilities. This would allow the computer to identify all pot7ential possiblities on the board for a given piece....!  Could evaluate for any multiple of -7 or 9 so long as they are not blank... but would need to change jump evaluations... !!! Might also be useful for the board restrictions!
