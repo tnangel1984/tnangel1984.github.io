@@ -1,11 +1,7 @@
 // ***CHECK JUMPS!!!
-//****LIMIT WHAT THE PLAYER CAN DO TO GUIDE THEM TO THE CORRECT PROGRAM FLOW!
-// STOP CHANGE TURN! ON WRONG MOVE OR PIECE
-// need an error handler onerror exit loop there are no more plays.
-//JUMPS NEED TO BE RESET VIA FUNCTION
 
 
-// ====FUNCTIONS HERE====
+// ==== BOARD BUILD FUNCTIONS HERE====
 
 const getEvenOdd = (countEvaluated, outputClass)=>{
       if(countEvaluated%2 === 0){
@@ -80,6 +76,8 @@ const subtract= (x, y)=>{return x-y;}
 
 // ====FUNCTIONS HERE====
   const startGame =() =>{
+
+    alert('Welcome to Checkers! \n Move diagonally across the board toward your opponent.\n Jump over your opponent to capture their pieces. \n First to capture all of their opponents peices wins.')
     // confirm('Ready to begin?')
         //simply need something to indicate that the game as began so turns can be counted.
     //1. Initiate play, select player at random.
@@ -97,14 +95,14 @@ const subtract= (x, y)=>{return x-y;}
            //sets altP to the opposite value. i.e. changes it from true to not true: false
     if(alternatePlayer  === true){
       player=$player2;
-      playerOp = sum;//<--mneeeds to be a functio
+      playerOp = sum;
       playerImage= p2Image;
       opponentImage = p1Image;
       playGame();
       console.log(playerImage);
     }else{
        player=$player1;
-       playerOp=subtract;// <--neeeds to be a function;
+       playerOp=subtract;
        playerImage= p1Image;
        opponentImage = p2Image;
        playGame();
@@ -170,7 +168,7 @@ console.log(selectionId);console.log(destinationId);
       // MoveLeft = playerOp(selectionId,9);
       // JumpRight = playerOp(selectionId,14);
       // JumpLeft = playerOp(selectionId,18);
-debugger
+
       if(destinationId=== MoveLeft || destinationId=== MoveRight){
             console.log('destination validation 2 complete'); //EXCUTE MOVE!
             move(playerImage, selection, destination);
@@ -182,7 +180,7 @@ debugger
               //validates 3 things:
               // That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
               if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', opponentImage)){
-                  debugger
+
                   move(playerImage, selection, destination);
                   $('#'+MoveLeft).children().remove();
           //***Reset Selection & Destination ***NEED TO MAKE THIS INTO A FUNCTION!
@@ -190,16 +188,16 @@ debugger
                   selectionId = destinationId;
                   destinationId = playerOp(selectionId,14);
                   calcMoves();
-                  destination = destination.attr('id',destinationId);
+                  destination = destination.attr('id',destinationId);//<<---ERROR HERE!
                   if($(destination.children()).is('img')){
                     jumpCount =0;
                   }else{
                     jumpCount++;
                   }
-                  debugger
+
 
               }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', opponentImage)){
-debugger
+
                   move(playerImage, selection, destination);//THEN MOVE RIGHT
                   $('#'+MoveRight).children().remove();  //jump(); //EXECUTE JUMP FUNCTION!!
                   selection = destination;
@@ -286,7 +284,7 @@ const playGame =()=>{
           }
    });
 };
-
+startGame();
 playGame();
 })
 
@@ -302,10 +300,6 @@ playGame();
     // 22. If incorrect piece or invalid move need to reset game play NOT end turn.
     // 22. *** FIX CSS Squares move when window shrinks.
 
-    //special considerations for boundaries! - any square along the sides of the board ONLY has ONE option for moving, NOT tow
-    // GOAL - Condition FLOW should be structured to progress as follows:
-    //   From  zero possibilities for moves to ONE possibility moves to TWO possibility moves.
-    //        ...maybe run border check algorithm first... and separate? as opposed to having it built in to the normal evaluation function...
 
 
 // ========= OUTLINE =========
@@ -343,12 +337,24 @@ playGame();
     //
     //
     // move()
+    // calcMoves
 
 //=== EVENT LISTENERS/HANDELERS ===
     // player.onclick ()
     //    calls validate selections and RETURNS A VALUE
     // openSquares.onclick()
     //
+
+// 10. ====Map Game Play====
+    // 1.click;
+    // 2. select piece; confirms that it is okay to select this piece.
+    // 3.click again;<< currently turn off one event listener, turn  on  another
+    // 4. select destination;
+    // 5. Run evaluations
+    // 6. Make move(s) -->update arrays
+    // 7. Make jump(s)  -->update arrays
+    // 8. Next players turn
+    // 9. Loop
 
 //DONE!
 //1.Build Board. 8x8
@@ -361,16 +367,7 @@ playGame();
 // 6. Import and assign Player images  ...could do this in board build
 // 7. !!!!CRITICAL FIX ROW COUNT! WILL CHANGE ALL OTHER EVENTS :/
 // 8. ADD EVENT HANDELERS Click img OR div... PUT it ON the div so the img inherits it? or limit to the img
-// 10. ====Map Game Play====
-        // 1.click;
-        // 2. select piece; confirms that it is okay to select this piece.
-        // 3.click again;<< currently turn off one event listener, turn  on  another
-        // 4. select destination;
-        // 5. Run evaluations
-        // 6. Make move(s) -->update arrays
-        // 7. Make jump(s)  -->update arrays
-        // 8. Next players turn
-        // 9. Loop
+
 
 // 11. SELECT PIECE event.target/currentTarget...
 // 12. SELECT DESTINATION div event.target/currentTarget...
@@ -514,3 +511,7 @@ playGame();
 //
 //
 //
+//****LIMIT WHAT THE PLAYER CAN DO TO GUIDE THEM TO THE CORRECT PROGRAM FLOW!
+// STOP CHANGE TURN! ON WRONG MOVE OR PIECE
+// need an error handler onerror exit loop there are no more plays.
+//JUMPS NEED TO BE RESET VIA FUNCTION
