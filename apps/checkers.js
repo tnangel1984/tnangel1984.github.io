@@ -149,7 +149,7 @@ const subtract= (x, y)=>{return x-y;}
         console.log("You cannot move here this place is taken");
       }else{
         console.log('destination validation 1 complete');
-        // debugger;
+
        $destinationDiv = $(event.currentTarget);
 
       }
@@ -157,18 +157,20 @@ const subtract= (x, y)=>{return x-y;}
 
  //  //
   const ordainMove = (player, selection, destination)=>{
-    // ***OFF BOARD RESTRICTIONS NEED TO HAPPEN HERE ON THE OUTSIDE
+
     //**SHOULD THIS BE 3 SEPARATE FUNCTIONS??? Definitions, Moves, Jumps?
       let selectionId = Number(selection.attr('id'));
       let destinationId = Number(destination.attr('id'));
 console.log(selectionId);console.log(destinationId);
+    calcMoves(selectionId, destinationId);
+
     //Lists possible 1st moves... Doesn't change...
     // *From the vantage point of p1 move right +7 (p2 moveleft -7)
-      MoveRight = playerOp(selectionId,7);
-      MoveLeft = playerOp(selectionId,9);
-      JumpRight = playerOp(selectionId,14);
-      JumpLeft = playerOp(selectionId,18);
-// debugger
+      // MoveRight = playerOp(selectionId,7);
+      // MoveLeft = playerOp(selectionId,9);
+      // JumpRight = playerOp(selectionId,14);
+      // JumpLeft = playerOp(selectionId,18);
+debugger
       if(destinationId=== MoveLeft || destinationId=== MoveRight){
             console.log('destination validation 2 complete'); //EXCUTE MOVE!
             move(playerImage, selection, destination);
@@ -176,36 +178,51 @@ console.log(selectionId);console.log(destinationId);
       }else{     //if (destinationId=== JumpLeft || destinationId=== JumpRight){
           let jumpCount = 1;
 //***BLANK TEST NEEDED IN LOOPS!!!
-          do {debugger
+          do {
               //validates 3 things:
               // That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
               if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', opponentImage)){
+                  debugger
                   move(playerImage, selection, destination);
                   $('#'+MoveLeft).children().remove();
           //***Reset Selection & Destination ***NEED TO MAKE THIS INTO A FUNCTION!
                   selection = destination;
                   selectionId = destinationId;
                   destinationId = playerOp(selectionId,14);
+                  calcMoves();
                   destination = destination.attr('id',destinationId);
-      //*****WILL NEED TO CHANGE TO PLAYER IMAGE????
-                  jumpCount++;
+                  if($(destination.children()).is('img')){
+                    jumpCount =0;
+                  }else{
+                    jumpCount++;
+                  }
+                  debugger
 
               }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', opponentImage)){
+debugger
                   move(playerImage, selection, destination);//THEN MOVE RIGHT
                   $('#'+MoveRight).children().remove();  //jump(); //EXECUTE JUMP FUNCTION!!
                   selection = destination;
                   selectionId = destinationId;
-                  destinationId = playerOp(selectionId,14);
+                  calcMoves(selectionId, destinationId);
                   console.log(destination);
-                  destination = destination.attr('id',destinationId);
+                  destinationId = playerOp(selectionId,14);
 
-                  jumpCount++;
-debugger
+                  destination = destination.attr('id',destinationId);
+                  console.log($(destination.children()));
+                  console.log($(destination.children()).is('img'));
+                  if($(destination.children()).is('img')){
+                    jumpCount =0;
+                    console.log('There are no more moves');
+                  }else{
+                    jumpCount++;
+                  }
+                  debugger
               }else if(jumpCount>1){
                 jumpCount =0; //exit loop condition.
                 console.log('There are no more moves');
               }else{
-                debugger
+
                 jumpCount=0;
                 console.log('This is not a valid move');
               }
@@ -229,6 +246,12 @@ debugger
      }
 }
 
+const calcMoves = (selectionId, destinationId)=>{
+  MoveRight = playerOp(selectionId,7);
+  MoveLeft = playerOp(selectionId,9);
+  JumpRight = playerOp(selectionId,14);
+  JumpLeft = playerOp(selectionId,18);
+}
       //make an ordain JUMP!
 
         //NEED TO CONFIRM END OF TURN!! Each time.
@@ -241,6 +264,7 @@ const playGame =()=>{
     $destinationDiv='';
 
     player.off().one('click',(event)=>{
+        $selectionDiv='';
       validateSelection(player);
       console.log($selectionDiv);
       console.log('selction executed');
