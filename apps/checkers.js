@@ -257,7 +257,12 @@ const calcMoves = (selectionId, destinationId)=>{
 
 //====ON CLICK EVENTS HERE
 const playGame =()=>{
-    console.log('lets play!');
+    if($player1.length === 0 || $player2.length ===0){
+       alert('We Have a Winner! Game Over');
+       alert('Play Again?');
+    }else{
+    // alert('lets play!');
+  }
     $selectionDiv='';
     $destinationDiv='';
 
