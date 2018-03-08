@@ -71,8 +71,6 @@ const subtract= (x, y)=>{return x-y;}
       let $selectionDiv='';
       let $destinationDiv='';
 
-  // console.log($player2);
-  // Is there any advantage to having these as arrays vs an objects??
 
 // ====FUNCTIONS HERE====
   const startGame =() =>{
@@ -88,7 +86,7 @@ const subtract= (x, y)=>{return x-y;}
     //How to
 
   }
-
+     //Turn change resets initial game stage variables to next player values.
   const changeTurn = () =>{
     alternatePlayer=!alternatePlayer;
     console.log('change execution');
@@ -108,10 +106,8 @@ const subtract= (x, y)=>{return x-y;}
        playGame();
 
        console.log(playerImage);
-       //Images?
 // countTurn ++
     }
-
 
     //count the number of turns taken
     //on first turn run a random number generator to determine which player goes first.
@@ -133,52 +129,33 @@ const subtract= (x, y)=>{return x-y;}
       }
   }
 
-          // console.log(event.currentTarget);
-            // console.log(player);
-            // console.log($(event.currentTarget));
-            // console.log($.inArray($(event.currentTarget),player));
-          // const selectPiece = (event)=>{
-          // }
-
   const selectDestination = ()=>{
           // check if img is appended
-          console.log($destinationDiv);
       if(event.currentTarget.children === $('img')){
         console.log("You cannot move here this place is taken");
       }else{
         console.log('destination validation 1 complete');
-
        $destinationDiv = $(event.currentTarget);
 
       }
   }
 
- //  //
   const ordainMove = (player, selection, destination)=>{
-
     //**SHOULD THIS BE 3 SEPARATE FUNCTIONS??? Definitions, Moves, Jumps?
       let selectionId = Number(selection.attr('id'));
       let destinationId = Number(destination.attr('id'));
-console.log(selectionId);console.log(destinationId);
-    calcMoves(selectionId, destinationId);
-
-    //Lists possible 1st moves... Doesn't change...
-    // *From the vantage point of p1 move right +7 (p2 moveleft -7)
-      // MoveRight = playerOp(selectionId,7);
-      // MoveLeft = playerOp(selectionId,9);
-      // JumpRight = playerOp(selectionId,14);
-      // JumpLeft = playerOp(selectionId,18);
+      console.log(selectionId);console.log(destinationId);
+      calcMoves(selectionId, destinationId);
 
       if(destinationId=== MoveLeft || destinationId=== MoveRight){
             console.log('destination validation 2 complete'); //EXCUTE MOVE!
             move(playerImage, selection, destination);
-              //validates 3 things: That Destination is ordained position, jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
+              //validates 3 things:
+              //That Destination is ordained position, jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
       }else{     //if (destinationId=== JumpLeft || destinationId=== JumpRight){
           let jumpCount = 1;
 //***BLANK TEST NEEDED IN LOOPS!!!
           do {
-              //validates 3 things:
-              // That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
               if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', opponentImage)){
 
                   move(playerImage, selection, destination);
@@ -197,8 +174,7 @@ console.log(selectionId);console.log(destinationId);
 
 
               }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', opponentImage)){
-
-                  move(playerImage, selection, destination);//THEN MOVE RIGHT
+                  move(playerImage, selection, destination);
                   $('#'+MoveRight).children().remove();  //jump(); //EXECUTE JUMP FUNCTION!!
                   selection = destination;
                   selectionId = destinationId;
@@ -230,20 +206,23 @@ console.log(selectionId);console.log(destinationId);
     }
  }
 
+      //moves pieces (removes and adds images), updates arrays.
  const move = (playerImage, selection, destination)=>{
      $(destination).append($('<img>').attr('src', playerImage));
      (selection.children()).remove();
-     $openSquares.splice($.inArray(destination[0], $openSquares),1, selection[0]);//removes destination div from open spaces, adds selection div to open spaces.
-
+        //removes destination div from open spaces, adds selection div to open spaces.
+     $openSquares.splice($.inArray(destination[0], $openSquares),1, selection[0]);
+        // removes selected div from player array, adds new destination div to player array.
      if (player === $player2){
-         $player2.splice($.inArray(selection[0],$player2),1,destination[0]);// removes selected div from player array, adds new destination div to player array.
-         console.log(player);
+         $player2.splice($.inArray(selection[0],$player2),1,destination[0]);
      }else{
          $player1.splice($.inArray(selection[0],$player1),1,destination[0]);
-         console.log(player);
      }
 }
 
+
+//Lists possible 1st moves... Doesn't change...
+// *From the vantage point of p1 move right +7 (p2 moveleft -7)
 const calcMoves = (selectionId, destinationId)=>{
   MoveRight = playerOp(selectionId,7);
   MoveLeft = playerOp(selectionId,9);
@@ -251,9 +230,7 @@ const calcMoves = (selectionId, destinationId)=>{
   JumpLeft = playerOp(selectionId,18);
 }
       //make an ordain JUMP!
-
-        //NEED TO CONFIRM END OF TURN!! Each time.
-
+      //NEED TO CONFIRM END OF TURN!! Each time.
 
 //====ON CLICK EVENTS HERE
 const playGame =()=>{
@@ -262,7 +239,7 @@ const playGame =()=>{
        alert('Play Again?');
     }else{
     // alert('lets play!');
-  }
+   }
     $selectionDiv='';
     $destinationDiv='';
 
@@ -289,18 +266,14 @@ const playGame =()=>{
           }
    });
 };
+
 startGame();
 playGame();
 })
 
 
 
-
-
 //TO DO! Next
-
-
-
     // 22. ****CHECK ALL STARS! ****
     // 22. If incorrect piece or invalid move need to reset game play NOT end turn.
     // 22. *** FIX CSS Squares move when window shrinks.
@@ -342,7 +315,7 @@ playGame();
     //
     //
     // move()
-    // calcMoves
+    // calcMoves()
 
 //=== EVENT LISTENERS/HANDELERS ===
     // player.onclick ()
@@ -373,7 +346,6 @@ playGame();
 // 7. !!!!CRITICAL FIX ROW COUNT! WILL CHANGE ALL OTHER EVENTS :/
 // 8. ADD EVENT HANDELERS Click img OR div... PUT it ON the div so the img inherits it? or limit to the img
 
-
 // 11. SELECT PIECE event.target/currentTarget...
 // 12. SELECT DESTINATION div event.target/currentTarget...
 // 13. BUILD Evaluation LOGIC
@@ -388,6 +360,7 @@ playGame();
 // 21. Build in Border Limits!
 // 20. TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!! NO NEED PLAYER CAN MAKE AS MANY SELECTIONS AS NEDED
 // 24. Fixed attribute id errors in jump
+
 //GAME PLAY Logic//
 // CLICK1 --> selection ok?
 //          > is it the player's piece?
