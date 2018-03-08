@@ -109,8 +109,8 @@ const subtract= (x, y)=>{return x-y;}
       let playerOp=sum;
       let playerImage = p2Image;
       let opponentImage = p1Image;
-      let $selectionDiv;
-      let $destinatonDiv;
+      let $selectionDiv='';
+      let $destinationDiv='';
 
   // console.log($player2);
   // Is there any advantage to having these as arrays vs an objects??
@@ -130,14 +130,23 @@ const subtract= (x, y)=>{return x-y;}
 
   const changeTurn = () =>{
     alternatePlayer=!alternatePlayer;
+    console.log('change execution');
            //sets altP to the opposite value. i.e. changes it from true to not true: false
     if(alternatePlayer  === true){
       player=$player2;
-      playerOp = subtract;//<--neeeds to be a functio
-       //Images?
+      playerOp = sum;//<--mneeeds to be a functio
+      playerImage= p2Image;
+      opponentImage = p1Image;
+      playGame();
+      console.log(playerImage);
     }else{
        player=$player1;
-       playerOp=sum;// <--neeeds to be a function;
+       playerOp=subtract;// <--neeeds to be a function;
+       playerImage= p1Image;
+       opponentImage = p2Image;
+       playGame();
+
+       console.log(playerImage);
        //Images?
 // countTurn ++
     }
@@ -156,8 +165,8 @@ const subtract= (x, y)=>{return x-y;}
   const validateSelection = (player)=>{
       if($.inArray(event.currentTarget, player)>=0){
                 // give currentTarget a glow.. in JQUERY
-        console.log($(event.currentTarget));
         $selectionDiv =$(event.currentTarget)
+        console.log($(event.currentTarget));
       }else{
         alert('This is not Your piece.')
       }
@@ -172,11 +181,14 @@ const subtract= (x, y)=>{return x-y;}
 
   const selectDestination = ()=>{
           // check if img is appended
+          console.log($destinationDiv);
       if(event.currentTarget.children === $('img')){
         console.log("You cannot move here this place is taken");
       }else{
         console.log('destination validation 1 complete');
-       $destinatonDiv = $(event.currentTarget);
+        // debugger;
+       $destinationDiv = $(event.currentTarget);
+
       }
   }
 
@@ -186,25 +198,25 @@ const subtract= (x, y)=>{return x-y;}
     //**SHOULD THIS BE 3 SEPARATE FUNCTIONS??? Definitions, Moves, Jumps?
       let selectionId = Number(selection.attr('id'));
       let destinationId = Number(destination.attr('id'));
-
+console.log(selectionId);console.log(destinationId);
     //Lists possible 1st moves... Doesn't change...
       MoveLeft = playerOp(selectionId,7);
       MoveRight = playerOp(selectionId,9);
       JumpLeft = playerOp(selectionId,14);
       JumpRight = playerOp(selectionId,18);
-
+// debugger
       if(destinationId=== MoveLeft || destinationId=== MoveRight){
             console.log('destination validation 2 complete'); //EXCUTE MOVE!
-            move(p2Image, selection, destination);
+            move(playerImage, selection, destination);
               //validates 3 things: That Destination is ordained position, jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
       }else{     //if (destinationId=== JumpLeft || destinationId=== JumpRight){
           let jumpCount = 1;
 //***BLANK TEST NEEDED IN LOOPS!!!
           do {
               //validates 3 things: That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
-
-              if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', p1Image)){
-                  move(p2Image, selection, destination);
+debugger
+              if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', opponentImage)){
+                  move(playerImage, selection, destination);
                   $('#'+MoveLeft).children().remove();
           //***Reset Selection & Destination ***NEED TO MAKE THIS INTO A FUNCTION!
                   selection = destination;
@@ -214,7 +226,7 @@ const subtract= (x, y)=>{return x-y;}
       //*****WILL NEED TO CHANGE TO PLAYER IMAGE
                   jumpCount++;
 
-              }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', p1Image)){
+              }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', opponentImage)){
                   move(playerImage, selection, destination);//THEN MOVE RIGHT
                   $('#'+MoveRight).children().remove();  //jump(); //EXECUTE JUMP FUNCTION!!
                   destination = MoveRight;
@@ -228,6 +240,8 @@ const subtract= (x, y)=>{return x-y;}
                 jumpCount =0; //resets jump count; Could use this to add msg celebrating doubles or triples.
                 console.log('There are no more moves');
               }else{
+                debugger
+                jumpCount=0;
                 console.log('This is not a valid move');
               }
           }
@@ -239,9 +253,16 @@ const subtract= (x, y)=>{return x-y;}
  const move = (playerImage, selection, destination)=>{
      $(destination).append($('<img>').attr('src', playerImage));
      (selection.children()).remove();
-     console.log('move working');
-     //***NEED TO UPDATE ARRAYS!! HERE!
+     $openSquares.splice($.inArray(destination[0], $openSquares),1, selection[0]);//removes destination div from open spaces, adds selection div to open spaces.
+
+     if (player === $player2){
+         $player2.splice($.inArray(selection[0],$player2),1,destination[0]);// removes selected div from player array, adds new destination div to player array.
+         console.log(player);
+     }else{
+         $player1.splice($.inArray(selection[0],$player1),1,destination[0]);
+         console.log(player);
      }
+}
 
       //make an ordain JUMP!
       //----ALTERNATIVE--- posibilities are n rows aways from postion times 7 or 9¡, couls incorporate row count in calcing possibilities. This would allow the computer to identify all pot7ential possiblities on the board for a given piece....!  Could evaluate for any multiple of -7 or 9 so long as they are not blank... but would need to change jump evaluations... !!! Might also be useful for the board restrictions!
@@ -260,34 +281,43 @@ const subtract= (x, y)=>{return x-y;}
 
 //====ON CLICK EVENTS HERE
 //****CHANGED ALL PLAYER 2 TO NEW PLAYER VARIABLE VALUE TOGGLES BETWEEN PLAYERS
+const playGame =()=>{
+  console.log('lets play!');
+  $selectionDiv='';
+  $destinationDiv='';
+
     player.on('click',(event)=>{
-      validateSelection(player, event.currentTarget);
-      (player).off;
-      // $(event.currentTarget).trigger('reset');
-        // let selectionTest = validateSelection(player, event.currentTarget);
-           // $(event.currentTarget).css('border', '3px solid blue' )
-        //precise target gets a deselect onclick event goes here.
-      //<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
-
-// console.log(selectionTest);
-        ($($openSquares)).on('click',(event)=>{
-           selectDestination();
-            // let destinationTest =selectDestination();
-            // console.log(selectDestination());
-            //precise target gets a deselect onclick event goes here.
-
-  // console.log($player2);
-            ordainMove(player, $selectionDiv, $destinatonDiv);
-            changeTurn();
-            // console.log(player);
-            // console.log(playerOp);
-            ($($openSquares)).off();
-              // console.log(selectionTest);
-              // console.log(destinationTest);
-
-       })
-       // selectPiece();
+      // event.preventDefault();
+      // debugger
+      validateSelection(player);
+      console.log($selectionDiv);
+      console.log('selction executed');
+      // (player).off();
+                 // $(event.currentTarget).css('border', '3px solid blue' )
+              //precise target gets a deselect onclick event goes here.
+              //<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
     });
+
+        ($openSquares).on('click',(event)=>{
+            player.off();
+            if($selectionDiv= ''){
+              playGame();
+            }else{
+              // event.preventDefault();
+              // $openSquares.off();
+              debugger
+                 selectDestination();
+                 debugger
+                  console.log($selectionDiv);
+                  //precise target gets a deselect onclick event goes here.
+                  ordainMove(player, $selectionDiv, $destinationDiv);
+                  changeTurn();
+              }
+       });
+       // selectPiece();
+
+};
+
 
 
 // How should selection be limited?  Based on Turns  So first I need to establish that its player 1's turn.
@@ -305,6 +335,7 @@ const subtract= (x, y)=>{return x-y;}
 //The ONLY way to do this is via objects or arrays...
 
 // May Likely result in a change to the player piece staging portion of the code.
+playGame();
 })
 
 
@@ -450,3 +481,23 @@ const subtract= (x, y)=>{return x-y;}
  //piece jumped must belong to the opponent.
 //Opponent positions LIMIT the direction of the jump!
 // NEED TO PASS PLAYER IMAGE INTO  A VARIABLE FOR USE HERE AND FOR PIEE SELECTIONS!
+
+//===GET HELP ON THIS WHY DID IT TRACK ALL SELECTIONS===
+// player.on('click',(event)=>{
+//   validateSelection(player);
+//   console.log('selction executed');
+//
+//     ($($openSquares)).on('click',(event)=>{
+//     player.off();
+//
+//        selectDestination();
+//
+//         ordainMove(player, $selectionDiv, $destinatonDiv);
+//
+//         changeTurn();
+//
+//         ($($openSquares)).off();
+//
+//    })
+//    });
+   // selectPiece();
