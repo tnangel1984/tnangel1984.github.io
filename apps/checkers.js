@@ -1,5 +1,8 @@
-
+// ***CHECK JUMPS!!!
 //****LIMIT WHAT THE PLAYER CAN DO TO GUIDE THEM TO THE CORRECT PROGRAM FLOW!
+// STOP CHANGE TURN! ON WRONG MOVE OR PIECE
+// need an error handler onerror exit loop there are no more plays.
+//JUMPS NEED TO BE RESET VIA FUNCTION
 
 
 // ====FUNCTIONS HERE====
@@ -160,10 +163,11 @@ const subtract= (x, y)=>{return x-y;}
       let destinationId = Number(destination.attr('id'));
 console.log(selectionId);console.log(destinationId);
     //Lists possible 1st moves... Doesn't change...
-      MoveLeft = playerOp(selectionId,7);
-      MoveRight = playerOp(selectionId,9);
-      JumpLeft = playerOp(selectionId,14);
-      JumpRight = playerOp(selectionId,18);
+    // *From the vantage point of p1 move right +7 (p2 moveleft -7)
+      MoveRight = playerOp(selectionId,7);
+      MoveLeft = playerOp(selectionId,9);
+      JumpRight = playerOp(selectionId,14);
+      JumpLeft = playerOp(selectionId,18);
 // debugger
       if(destinationId=== MoveLeft || destinationId=== MoveRight){
             console.log('destination validation 2 complete'); //EXCUTE MOVE!
@@ -172,7 +176,7 @@ console.log(selectionId);console.log(destinationId);
       }else{     //if (destinationId=== JumpLeft || destinationId=== JumpRight){
           let jumpCount = 1;
 //***BLANK TEST NEEDED IN LOOPS!!!
-          do {
+          do {debugger
               //validates 3 things:
               // That Destination is a moveable position, that jump piece is an oppenents piece, AND that the piece IN THE THE DIRECTION OF the jump .
               if(destinationId=== JumpLeft && $('#'+MoveLeft).attr('src', opponentImage)){
@@ -189,13 +193,14 @@ console.log(selectionId);console.log(destinationId);
               }else if(destinationId=== JumpRight && $('#'+MoveRight).attr('src', opponentImage)){
                   move(playerImage, selection, destination);//THEN MOVE RIGHT
                   $('#'+MoveRight).children().remove();  //jump(); //EXECUTE JUMP FUNCTION!!
-                  destination = MoveRight;
                   selection = destination;
                   selectionId = destinationId;
                   destinationId = playerOp(selectionId,14);
+                  console.log(destination);
                   destination = destination.attr('id',destinationId);
-                  jumpCount++;
 
+                  jumpCount++;
+debugger
               }else if(jumpCount>1){
                 jumpCount =0; //exit loop condition.
                 console.log('There are no more moves');
@@ -267,8 +272,8 @@ playGame();
 
 //TO DO! Next
 
-    // 20. TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
-    // 21. Build in Border Limits!
+
+
     // 22. ****CHECK ALL STARS! ****
     // 22. If incorrect piece or invalid move need to reset game play NOT end turn.
     // 22. *** FIX CSS Squares move when window shrinks.
@@ -354,7 +359,9 @@ playGame();
 // 20. Need to re-visit event handlers and calls.
 // 21. Update ARRAYS
 // 22. Need to re-visit event handlers and calls.
-
+// 21. Build in Border Limits!
+// 20. TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!! NO NEED PLAYER CAN MAKE AS MANY SELECTIONS AS NEDED
+// 24. Fixed attribute id errors in jump
 //GAME PLAY Logic//
 // CLICK1 --> selection ok?
 //          > is it the player's piece?
@@ -452,3 +459,34 @@ playGame();
 //Question is ohw to call the functions? Is it better to use callbacks or global variables???
 
    //----ALTERNATIVE--- posibilities are n rows aways from postion times 7 or 9¡, couls incorporate row count in calcing possibilities. This would allow the computer to identify all pot7ential possiblities on the board for a given piece....!  Could evaluate for any multiple of -7 or 9 so long as they are not blank... but would need to change jump evaluations... !!! Might also be useful for the board restrictions!
+
+   //==**NO NEED FOR THOUGHTS ON BORDERS USER CANT SELECT WHAT DOESN'T EXIST!!1**==//
+   // last square is at each row[square[0]] &  each row[square[7], all squares in row 1 and all squares in row 8
+   // how to leverage this? ...
+   //  with current code must test left/Right move/jump values first.
+   //  if either <0 or > 64 = null
+   // How to handle sides??? Depends on direction
+   // ! If move/jump right or left is not a multiple of 8???
+   // is a
+   // for p1 From second right column, move/right is a multiple of 8
+   //     off board is a multiple of 8 +1
+   //for p2 From second right column, move/right is a multiple of 8
+   //     off board is a multiple of 8+1
+   // DOES NOT ALIGN WITH CURRENT LEFT RIGHT ...
+   // based on current: if p1 is different from p2 move right
+   // For p2 From second left, a move left is a multiple of 8+1
+   //     off board is a  multiple of 8
+   //
+   // p1 right%8!=0 not divisible = border move = null...
+   // p2 right(reall left) /8 =0 - border move = null...
+   // This requires an if statement...
+   // Alternative is to create arrays and check values
+   // if (moveRight%8===0 && playerOp == 1){ moveRight = null}
+   // if (moveLeft%8===0 && playerOp == 1){ moveLeft = null}
+   // if (moveLeft%8!===0 && playerOp ==2){moveRight = null}
+   //// if (moveRight%8!===0 && playerOp ==2){moveRight = null}
+// if (moveRight%8===0 && playerOp == 1){ moveRight = null}
+//// *borders are NOT needed to prevent user from clicking across the BOARD, Becausewrap arounds are red
+//
+//
+//
