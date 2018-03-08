@@ -29,7 +29,8 @@ h1{
   margin-left:.25%;
   overflow: hidden;
 }
-.square>img{
+.square>img{  border: 1px solid gold;
+
 display: block;
 margin:  0 auto;
 height: 60%;
