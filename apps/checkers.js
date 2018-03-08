@@ -286,8 +286,9 @@ const playGame =()=>{
   $selectionDiv='';
   $destinationDiv='';
 
-    player.on('click',(event)=>{
-      // event.preventDefault();
+    player.off().one('click',(event)=>{
+
+      // player.off(event);
       // debugger
       validateSelection(player);
       console.log($selectionDiv);
@@ -298,22 +299,25 @@ const playGame =()=>{
               //<<< NEED TO BE ABLE TO TOGGLE SELECT -DESELECCT IF PLYAER CHANGES MIND!!!
     });
 
-        ($openSquares).on('click',(event)=>{
-            player.off();
-            if($selectionDiv= ''){
-              playGame();
-            }else{
-              // event.preventDefault();
-              // $openSquares.off();
-              debugger
-                 selectDestination();
-                 debugger
-                  console.log($selectionDiv);
-                  //precise target gets a deselect onclick event goes here.
-                  ordainMove(player, $selectionDiv, $destinationDiv);
-                  changeTurn();
-              }
-       });
+    $openSquares.off().one('click',(event)=>{
+        // player.off(event);
+        // event.preventDefault();
+        // debugger
+        console.log($selectionDiv);
+        if($selectionDiv=== ''){
+          playGame();
+        }else{
+
+          // $openSquares.off();
+          // debugger
+             selectDestination();
+             // debugger
+              console.log($selectionDiv);
+              //precise target gets a deselect onclick event goes here.
+              ordainMove(player, $selectionDiv, $destinationDiv);
+              changeTurn();
+          }
+   });
        // selectPiece();
 
 };
