@@ -21,6 +21,11 @@
     const destinationController = require("./controllers/destinations.js");
     app.use('/destinations/', destinationController);
 
+    const sessionsController = require("./controllers/sessions.js");
+    app.use('/sessions/', sessionsController);
+
+    const travelersController = require("./controllers/travelers.js");
+    app.use('/travelers/', travelersController);
 
 
 
