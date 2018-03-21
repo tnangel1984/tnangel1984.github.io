@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Destination = require('../models/destinations.js');
 
 
 //Destination Page ROUTERS
