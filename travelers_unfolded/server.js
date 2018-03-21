@@ -40,8 +40,7 @@
     app.use(session(
     {secret: "feedmeseymour",
      resave: false,
-     saveunitialized:false
-
+     saveUninitialized:false
     }
     ));
 

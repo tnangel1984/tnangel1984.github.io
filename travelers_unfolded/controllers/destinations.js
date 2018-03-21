@@ -5,48 +5,55 @@ const Destination = require('../models/destinations.js');
 
 //Destination Page ROUTERS
 //index pg
-router.get('/', (req, res)=>{
-  res.render('destinations/index.ejs')
-});
+// router.get('/', (req, res)=>{
+//   res.render('destinations/index.ejs')
+// });
 
 //new pg
 router.get('/new', (req, res)=>{
   res.render('destinations/new.ejs');
 })
 
-//edit pg
-router.get('/:id/edit', (req, res)=>{
-  Destination.findById(req.params.id, (err, foundDestination)=>{      //<--finds entire object by id property. Creates foundDestination to represent the object
-      destination: foundDestination;                        //<-- passes foundDestination into destination variable
-      res.render('destinations/edit.ejs')
-  });
-});
+// //edit pg
+// router.get('/:id/edit', (req, res)=>{
+//   Destination.findById(req.params.id, (err, foundDestination)=>{      //<--finds entire object by id property. Creates foundDestination to represent the object
+//       destination: foundDestination;                        //<-- passes foundDestination into destination variable
+//       res.render('destinations/edit.ejs')
+//   });
+// });
 
 //post
-router.post('/', (req, res)=>{
+router.post('/new', (req, res)=>{
   Destination.create(req.body, (err, createdDestination)=>{
-    res.send(req.body);
+    res.send(createdDestination);
     // res.redirect('/')
   });
 });
 
 
 //put
-router.put('/', (req,res)=>{
-   Destination.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, foundDestination)=>{
-     res.send(req.body);
-     res.redirect('/');
-   })
-})
+// router.put('/', (req,res)=>{
+//    Destination.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, foundDestination)=>{
+//      res.send(req.body);
+//      res.redirect('/');
+//    })
+// })
+//
+// //delete
+//  router.delete('/', (req, res)=>{
+//    Destination.findByIdAndRemove(req.params.id, (err, removeDestination)=>{
+//        res.redirect('/');
+//    });
+//  })
 
-//delete
- router.delete('/', (req, res)=>{
-   Destination.findByIdAndRemove(req.params.id, (err, removeDestination)=>{
-       res.redirect('/');
-   });
- })
-
-//show
-
+// //show
+// router.get('/:id', (req, res)=>{
+//       Destination.findById(req.params.id, (err, foundDestination)=>{
+//         res.render(show.ejs, {
+//           destination: foundDestination,
+//           id:req.params.id
+//         });
+//       });
+// });
 
 module.exports = router;

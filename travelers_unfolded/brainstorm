@@ -34,9 +34,33 @@ Route setup pages:
   -Create route frameworks for new,  show, edit
   -Create & Test  new, show, edit ejs page rendering.
 
-Route setup methods:
+Route setup models & methods:
   -Create schema
   -Create route frameworks for post/put/delete methods
+
+HTML:
+  -Create New & Edit HTML Forms
+  -Create Index HTML Forms
+
+DAY 2: BRAINSTORM - check direction flush out balance of calendar.
+
+USERS
+Route setup models & methods:
+  -Create schema
+  -Create route frameworks for post/put/delete methods
+
+  HTML:
+    -Create New & Edit HTML Forms
+    -Create Index HTML Forms
+
+SESSIONS
+Route setup models & methods:
+  -Create schema
+  -Create route frameworks for post/put/delete methods
+
+  HTML:
+    -Create New & Edit HTML Forms
+    -Create Index HTML Forms
 
 Test & Validate destinations
 
