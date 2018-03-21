@@ -1,0 +1,45 @@
+
+ABOUT: Travels_Unfolded is a community of Travelers sharing our destinations, adventures, and recommendations for others.
+
+MVP: MVP - Minimum Viable Product
+
+A working full-stack application, built by you, using Node.js, Mongoose, Express and EJS
+Adhere to the MVC file structure: Models, Views, Controllers
+At least one model with all 7 RESTful routes and full CRUD.
+❗️ A git repository not inside the class repo.
+At least one Github commit per day.
+Be deployed online and accessible to the public via Heroku
+A readme.md file with explanations of the technologies used, the approach was taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
+Have a link to your hosted working app in the README.md file in your github repo
+
+
+==================== WORKFLOW ==========================
+DAY 1:
+Git Setup
+  - Create Travelers Directory
+  - Get repo & pages linkes for google docs
+  - set up .gitignore
+
+App Setup
+  - Create All Required Directories and anticipated files for Destinations and Users
+  - npm init and instal all required middle-ware
+      - express, mongoose, ejs, method-override, express-session, bcrypt
+Server
+  -Establish server connections: Require & USE
+      - don't forget bodyparser and public
+  -Create route for index & test html
+
+Destinations
+Route setup pages:
+  -Create route frameworks for new,  show, edit
+  -Create & Test  new, show, edit ejs page rendering.
+
+Route setup methods:
+  -Create schema
+  -Create route frameworks for post/put/delete methods
+
+Test & Validate destinations
+
+
+Users
+  -Repeat Route setups for pages and methods in user file.
