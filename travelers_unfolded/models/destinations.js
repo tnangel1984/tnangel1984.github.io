@@ -15,7 +15,8 @@ const destinationSchema = new Schema(
    description:String,
    tags:[String]
 
-  }
+ },
+ {timestamps:true}
 )
 
 const Destination = mongoose.model('Destinations',destinationSchema);
