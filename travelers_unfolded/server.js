@@ -39,7 +39,7 @@ const session = require('express-session'); //<-- for sessions object
 //ROUTES
 
 app.get('/', (req, res)=>{
-   res.send("index page goes here");
+   res.render('index.ejs');
 });
 
 
