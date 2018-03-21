@@ -3,9 +3,20 @@ const router = express.Router();
 
 
 //Destination Page ROUTERS
-//index
+//index pg
 router.get('/', (req, res)=>{
   res.render('destinations/index.ejs')
 });
+
+//new pg
+router.get('/new', (req, res)=>{
+  res.render('destinations/new.ejs');
+})
+
+//edit pg
+router.get('/edit', (req, res)=>{
+  res.render('destinations/edit.ejs')
+})
+
 
 module.exports = router;
