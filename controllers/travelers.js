@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Travler = require('../models/travelers.js');
+const Traveler = require('../models/travelers.js');
 
 //Travelers Page ROUTERS
 //index
@@ -10,8 +10,14 @@ router.get('/', (req, res)=>{
 
 //new
 router.get('/new', (req, res)=>{
-
   res.render('travelers/new.ejs');
+})
+
+//post/Create
+router.post('/new', (req, res)=>{
+   Traveler.create(req.body, (err, createdTraveler)=>{
+     res.redirect('/destinations');
+   })
 })
 
 //edit pg
