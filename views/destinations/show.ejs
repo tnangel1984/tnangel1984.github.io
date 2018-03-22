@@ -5,20 +5,34 @@
     <title></title>
   </head>
   <body>
+
+
       <h1> Show Destination</h1>
 
-       Destination: <%= destination.city%>, <%= destination.country%> <br/>
-       <div class="">
-           <img src="<%=destination.img1%>" alt="china" >
-           <img src="<%=destination.img2%>" alt="china" >
-           <img src="<%=destination.img3%>" alt="china" >
-        </div>
-       Description: <%= destination.description%>
+      <h2>Destination: <%= destination.city%>, <%= destination.country%> <br/></h2>
 
-       <a href="/destinations/<%=id%>/edit">Edit Post</a>
+     <div class="">
+         <img src="<%=destination.img1%>" alt="" >
+         <img src="<%=destination.img2%>" alt="" >
+         <img src="<%=destination.img3%>" alt="" >
+      </div><br/>
+
+      <h4>Tags: <%= destination.tags%></h4>
+      <h2>Destination: <%= destination.city%>
+
+      <h3>Adventures</h3>
+      <div class="adv">
+      <p> Description: <%= destination.description%></p>
+      </div><br/>
+
+
+
 
        <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
           <input type="submit" name="" value="DELETE POST">
        </form>
+       <nav>
+            <a href="/destinations/<%=id%>/edit">Edit Post</a>
+       </nav>
   </body>
 </html>
