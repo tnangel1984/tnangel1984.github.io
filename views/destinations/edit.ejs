@@ -7,7 +7,7 @@
   <body>
     <h1>Edit Post</h1>
 
-    <form class="" action="/destinations/new" method="POST">
+    <form class="" action="/destinations/<%=destination.id%>?_method=PUT" method="POST">
         <fieldset> <h4>Destination</h4>  </fieldset>
 
       <hr>
@@ -43,6 +43,12 @@
 
         <hr>
             <input type="SUBMIT" name="" value="Update Post">
-          </form>
+    </form>
+
+
+   <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
+      <input type="submit" name="" value="DELETE POST">
+   </form>
+
   </body>
 </html>

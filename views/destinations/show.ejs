@@ -14,5 +14,9 @@
        Description: <%= destination.description%>
 
        <a href="/destinations/<%=id%>/edit">Edit Post</a>
+
+       <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
+          <input type="submit" name="" value="DELETE POST">
+       </form>
   </body>
 </html>

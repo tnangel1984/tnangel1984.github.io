@@ -13,48 +13,58 @@ router.get('/', (req, res)=>{
     });
 });
 
-//new pg
+//NEW pg
 router.get('/new', (req, res)=>{
   res.render('destinations/new.ejs');
 })
 
-//post
-router.post('/new', (req, res)=>{
-    console.log(req.body);
-  Destination.create(req.body, (err, createdDestination)=>{
-    res.redirect('/');
-    // res.send(req.body);
 
-  });
-});
-
-//edit pg
+//EDIT pg
 router.get('/:id/edit', (req, res)=>{
   Destination.findById(req.params.id, (err, foundDestination)=>{      //<--finds entire object by id property. Creates foundDestination to represent the object
-      destination: foundDestination;                        //<-- passes foundDestination into destination variable
-      res.render('destinations/edit.ejs')
+      res.render('destinations/edit.ejs',{
+        destination: foundDestination,              //<-- passes foundDestination into destination variable
+        id: req.params.id
+      });
   });
 });
 
-// put
-router.put('/', (req,res)=>{
-   Destination.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, foundDestination)=>{
-     res.send(req.body);
-     res.redirect('/destinations');
-   })
-})
+//POST/CREATE new
+router.post('/new', (req, res)=>{
+  Destination.create(req.body, (err, createdDestination)=>{
+    res.redirect('/destinations');
+    // res.send(req.body);
+  });
+});
+
+// PUT/UPDATE edit
+router.put('/:id/', (req, res)=>{
+  console.log(req.body);
+    Destination.findByIdAndUpdate(
+         req.params.id,
+         req.body,
+         {new:true},
+         (err, foundDestination)=>{
+             res.send(req.body);
+             // res.redirect('/');
+         }
+    )
+});
 
 //delete
- router.delete('/', (req, res)=>{
+ router.delete('/:id', (req, res)=>{
    Destination.findByIdAndRemove(req.params.id, (err, removeDestination)=>{
-       res.redirect('/');
+       res.redirect('/destinations');
    });
  })
 
 //show
 router.get('/:id', (req, res)=>{
       Destination.findById(req.params.id, (err, foundDestination)=>{
+
+            console.log(foundDestination),
         res.render('destinations/show.ejs', {
+
           destination: foundDestination,
           id:req.params.id
         });
