@@ -24,8 +24,10 @@ router.get('/new', (req, res)=>{
 
 //post
 router.post('/new', (req, res)=>{
+    console.log(req.body);
   Destination.create(req.body, (err, createdDestination)=>{
-    res.send(createdDestination);
+    // res.send(req.body);
+
     // res.redirect('/')
   });
 });

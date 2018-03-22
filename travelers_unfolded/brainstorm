@@ -42,9 +42,13 @@ HTML:
   -Create New & Edit HTML Forms
   -Create Index HTML Forms
 
-DAY 2: BRAINSTORM - check direction flush out balance of calendar.
+  Test & Validate destinations
 
+DAY 2: BRAINSTORM - check direction flush out balance of calendar. AND VISION
+
+ Complete tests for destination edit  & delete.
 USERS
+
 Route setup models & methods:
   -Create schema
   -Create route frameworks for post/put/delete methods
@@ -52,6 +56,8 @@ Route setup models & methods:
   HTML:
     -Create New & Edit HTML Forms
     -Create Index HTML Forms
+
+    Test & Validate Users
 
 SESSIONS
 Route setup models & methods:
@@ -62,7 +68,7 @@ Route setup models & methods:
     -Create New & Edit HTML Forms
     -Create Index HTML Forms
 
-Test & Validate destinations
+    Test & Validate Sessions
 
 
 Users
