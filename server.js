@@ -46,7 +46,7 @@
       console.log("Connected to Mongo");
     });
 
- const port = process.env.MONGODB_URI || 3000;
+ const port = process.env.PORT || 3000;
 
 
 
