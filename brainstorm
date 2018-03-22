@@ -46,11 +46,15 @@ HTML:
 
 DAY 2: BRAINSTORM - check direction flush out balance of calendar. AND VISION
 
-Destinations:
+DESTINATIONS:
 Build Index & Show pages with delete buttons.
  Complete tests for destination edit  & delete.
-USERS
 
+SEED Test Data:
+Build model & route.
+
+
+USERS
 Route setup models & methods:
   -Create schema
   -Create route frameworks for post/put/delete methods
@@ -75,3 +79,42 @@ Route setup models & methods:
 
 Users
   -Repeat Route setups for pages and methods in user file.
+
+IMAGES/
+
+Beijing, China: WanFuXing night market
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/24223_565843583218_7872246_n.jpg?oh=e0acc41ded6a6bba65f4b3c0812a9026&oe=5B3FB30F
+Structure HTML page?
+
+Beijing: Great Wall
+https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/-PAXP-deijE.gif
+https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/-PAXP-deijE.gif
+
+Sandy Beach
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/249992_657229520068_6106043_n.jpg?oh=a482cbefe211cbd4ce12c42a93db12a8&oe=5B746105
+
+Carmel Beach
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/252322_657229485138_7173908_n.jpg?_nc_cat=0&oh=e43f76f6a2f59e21538e081ae18f93bb&oe=5B29F012
+
+
+Boston
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/529120_10101007513537048_804116528_n.jpg?_nc_cat=0&oh=9109f5fe4ef482d6116135ef970a3173&oe=5B310CF5
+
+Freedom Trail
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/15193549_10102101810132898_3527569462275344932_n.jpg?_nc_cat=0&oh=8d337c9c6c97156db51fc7c91a8d5157&oe=5B284654
+
+Looking for Reccos!
+https://scontent-ort2-2.xx.fbcdn.net/v/t31.0-8/22291295_10102452420122668_5125492715597887302_o.jpg?oh=d89ef4787017690988fb41619b7d230b&oe=5B418D5D
+
+Voodoo
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/15672840_10102143938522268_4966518581447310222_n.jpg?_nc_cat=0&oh=6a22358c82ea62fa24ae0eee78cea67f&oe=5B3D3394
+
+
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/14068149_10102022921935478_6499186200129254347_n.jpg?oh=f5123828910259a091b1fd27c955eed8&oe=5B48BAAD
+
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/14192015_10102022921780788_6496178016394129566_n.jpg?_nc_cat=0&oh=511674724e51c3ec9d0288f7d5d7c217&oe=5B415231
+
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/14142023_10102021974179788_7782693942438124746_n.jpg?oh=cb9ec0fb9a97ce7ad3dbd525dd40eeed&oe=5B2BFFBC
+
+Positano
+https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/13256180_10101947669252458_516914382951365887_n.jpg?_nc_cat=0&oh=aeff9b5d10cf913560506b9917bbab38&oe=5B3ED0F7

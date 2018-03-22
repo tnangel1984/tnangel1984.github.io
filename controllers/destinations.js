@@ -1,9 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const Destination = require('../models/destinations.js');
-
+const seed = require('../models/seedDestinations.js');
 
 //Destination Page ROUTERS
+//seedDestinations
+
+
+router.get('/seedDestinations', (req, res)=>{
+  Destination.create(seed, (err, createdDestination)=>{
+    
+      res.redirect('/destinations');
+  });
+});
+
+
+
 // index pg
 router.get('/', (req, res)=>{
     Destination.find({}, (err, allDestinations)=>{
@@ -45,8 +57,8 @@ router.put('/:id/', (req, res)=>{
          req.body,
          {new:true},
          (err, foundDestination)=>{
-             res.send(req.body);
-             // res.redirect('/');
+             // res.send(req.body);
+             res.redirect('/destinations');
          }
     )
 });

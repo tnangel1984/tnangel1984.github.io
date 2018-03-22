@@ -5,7 +5,7 @@
     const app = express();
 
     const methodOverride = require('method-override');
-
+    // const seed = require('./models/seedDestinations.js');
     const session = require('express-session'); //<-- for sessions
     const mongoose = require ('mongoose');
 
