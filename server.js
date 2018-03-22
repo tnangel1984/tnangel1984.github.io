@@ -39,14 +39,14 @@
 
 
 
-    const mongoURI = ('mongodb://localhost:27017/TravelersDB');
+    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/TravelersDB';
     mongoose.connect(mongoURI);
 
     mongoose.connection.once('open',()=>{
       console.log("Connected to Mongo");
     });
 
-
+ const port = process.env.MONGODB_URI || 3000;
 
 
 
@@ -57,6 +57,6 @@ app.get('/', (req, res)=>{
 });
 
 
-    app.listen(3000, ()=>{
+    app.listen(port, ()=>{
       console.log('Express Listening...');
     });
