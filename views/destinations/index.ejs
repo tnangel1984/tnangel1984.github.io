@@ -5,14 +5,15 @@
     <title></title>
   </head>
   <body>
+    <% include ../partials/nav.ejs %>
+
     <h1>DESTINATIONS</h1>
 
     <%for(i=0; i < destinations.length; i++){%>
+          <a href="/destinations/<%=destinations[i].id%>">  <%=destinations[i].city%></a>, <%=destinations[i].country%>
       <li>
-      <a href="/destinations/<%=destinations[i].id%>">  <%=destinations[i].city%></a>, <%=destinations[i].country%>
-        <a href="/<%=destinations[i].id%>"><img src="<%=destinations[i].img%>" alt=""></a>
+        <a href="destinations/<%=destinations[i].id%>"><img src="<%=destinations[i].img1%>" alt=""></a>
       </li>
-
     <%}%>
   </body>
 </html>
