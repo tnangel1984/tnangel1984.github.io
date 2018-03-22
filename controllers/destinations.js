@@ -9,7 +9,6 @@ const seed = require('../models/seedDestinations.js');
 
 router.get('/seedDestinations', (req, res)=>{
   Destination.create(seed, (err, createdDestination)=>{
-    
       res.redirect('/destinations');
   });
 });
@@ -51,7 +50,6 @@ router.post('/new', (req, res)=>{
 
 // PUT/UPDATE edit
 router.put('/:id/', (req, res)=>{
-  console.log(req.body);
     Destination.findByIdAndUpdate(
          req.params.id,
          req.body,
@@ -73,8 +71,6 @@ router.put('/:id/', (req, res)=>{
 //show
 router.get('/:id', (req, res)=>{
       Destination.findById(req.params.id, (err, foundDestination)=>{
-
-            console.log(foundDestination),
         res.render('destinations/show.ejs', {
 
           destination: foundDestination,

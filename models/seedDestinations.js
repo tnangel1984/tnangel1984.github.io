@@ -6,10 +6,10 @@ let seedDestinations = [
         country: 'China',
         stateRegion:"",
         dateOfVisit:'2009',
-        
-        img1:["https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/24223_565843583218_7872246_n.jpg?oh=e0acc41ded6a6bba65f4b3c0812a9026&oe=5B3FB30F"],
-        img2:"https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/-PAXP-deijE.gif",
-        img3:"https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/-PAXP-deijE.gif",
+
+        img1:"https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/24223_565843583218_7872246_n.jpg?oh=e0acc41ded6a6bba65f4b3c0812a9026&oe=5B3FB30F",
+        img2:"https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/24223_565844336708_3795440_n.jpg?oh=60898c2e5cfb1eb5df41fd3cc015d626&oe=5B393F7C",
+        img3:"https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/24223_565844326728_6274266_n.jpg?_nc_cat=0&oh=95d03a499f60e7dc83908a57741c640d&oe=5B3143B1",
 
         recco:"Definitely book a tour (the lunch is included and its good!).Go to the second furthest section of the wall. It is not as crowded, but not too remote.",
 
