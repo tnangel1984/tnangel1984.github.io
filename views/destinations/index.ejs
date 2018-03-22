@@ -6,5 +6,13 @@
   </head>
   <body>
     <h1>DESTINATIONS</h1>
+
+    <%for(i=0; i < destinations.length; i++){%>
+      <li>
+      <a href="destinations/<%=destinations[i].id%>">  <%=destinations[i].city%></a>, <%=destinations[i].country%>
+        <a href="/<%=destinations[i].id%>"><img src="<%=destinations[i].img%>" alt=""></a>
+      </li>
+
+    <%}%>
   </body>
 </html>

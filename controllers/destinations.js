@@ -4,10 +4,14 @@ const Destination = require('../models/destinations.js');
 
 
 //Destination Page ROUTERS
-//index pg
-// router.get('/', (req, res)=>{
-//   res.render('destinations/index.ejs')
-// });
+// index pg
+router.get('/', (req, res)=>{
+    Destination.find({}, (err, allDestinations)=>{
+        res.render('destinations/index.ejs', {
+          destinations: allDestinations
+        });
+    });
+});
 
 //new pg
 router.get('/new', (req, res)=>{
@@ -26,9 +30,9 @@ router.get('/:id/edit', (req, res)=>{
 router.post('/new', (req, res)=>{
     console.log(req.body);
   Destination.create(req.body, (err, createdDestination)=>{
+    res.redirect('/');
     // res.send(req.body);
 
-    // res.redirect('/')
   });
 });
 
@@ -51,7 +55,7 @@ router.put('/', (req,res)=>{
 //show
 router.get('/:id', (req, res)=>{
       Destination.findById(req.params.id, (err, foundDestination)=>{
-        res.render(show.ejs, {
+        res.render('destinations/show.ejs', {
           destination: foundDestination,
           id:req.params.id
         });
