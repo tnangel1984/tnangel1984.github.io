@@ -58,10 +58,10 @@ USERS
 Route setup models & methods:
   -Create schema
   -Create route frameworks for post/create new method
+  -ADD ENCRPTION
 
   HTML:
     -Create New Forms
-
     Test & Validate Users
 
 SESSIONS
