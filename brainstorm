@@ -57,11 +57,10 @@ Build model & route.
 USERS
 Route setup models & methods:
   -Create schema
-  -Create route frameworks for post/put/delete methods
+  -Create route frameworks for post/create new method
 
   HTML:
-    -Create New & Edit HTML Forms
-    -Create Index HTML Forms
+    -Create New Forms
 
     Test & Validate Users
 
@@ -77,7 +76,10 @@ Route setup models & methods:
     Test & Validate Sessions
 
 
-Users
+USERS
+USER login currently directs to  destinations pages
+Would be great if there was a user page direct to user page with only user posts
+
   -Repeat Route setups for pages and methods in user file.
 
 IMAGES/
