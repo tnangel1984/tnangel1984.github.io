@@ -26,13 +26,14 @@
       </div><br/>
 
 
-
+<%if(currentUser){%>
+      <nav>
+           <a href="/destinations/<%=id%>/edit">Edit Post</a>
+      </nav>
 
        <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
           <input type="submit" name="" value="DELETE POST">
        </form>
-       <nav>
-            <a href="/destinations/<%=id%>/edit">Edit Post</a>
-       </nav>
+  <%  }  %>
   </body>
 </html>

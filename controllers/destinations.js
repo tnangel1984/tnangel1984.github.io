@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Destination = require('../models/destinations.js');
 const seed = require('../models/seedDestinations.js');
+// const sessionsController = require('./sessions.js');
+
 
 //Destination Page ROUTERS
 //seedDestinations
@@ -74,8 +76,10 @@ router.get('/:id', (req, res)=>{
         res.render('destinations/show.ejs', {
 
           destination: foundDestination,
-          id:req.params.id
+          id:req.params.id,
+          currentUser: req.session.currentUser
         });
+        console.log(req.session.currentUser);
       });
 });
 
