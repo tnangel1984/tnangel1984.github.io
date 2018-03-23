@@ -2,14 +2,18 @@
 <html>
   <head>
     <meta charset="utf-8">
+      <link rel="stylesheet" href="/css/main.css">
     <title></title>
   </head>
   <body>
-      <h1>Travels Uncovered</h1><br/>
 
-      <h3>Home</h3>
+<!--=====HEADER======== -->
       <header>
-          <nav>
+
+          <% include ./partials/nav.ejs %>
+          <h1>Travels Uncovered</h1><br/>
+
+          <!-- <nav>
             <ul>
                 <li> <a href="#">About</a> </li>
                 <li> <a href="/destinations"> Destinations</a> </li>
@@ -17,31 +21,32 @@
                 <li> <a href="/travelers/login">LogIn</a> </li>
                <li> <a href="/register">Register</a> </li>
             </ul>
-          </nav>
+          </nav> -->
 
-          <img src="https://images.pexels.com/photos/358482/pexels-photo-358482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+          <!-- <img src="https://images.pexels.com/photos/358482/pexels-photo-358482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=""/> -->
+
       </header>
 
   <section>
     <h1>EXPLORE</h1>
-     <div class="">
+     <div class="category">
        <h2>GO!</h2>
-       <img src="https://www.pexels.com/photo/asphalt-environment-grass-highway-239520/" alt="place">
+       <img src="../../images/pexels-RoadTrip.jpeg" alt="place">
        <h4>Check Out Our Favorite Destinations</h4>
      </div>
 
 
-     <div class="">
+     <div class="category">
        <h2>SEE!</h2>
-       <img src="../../public/images/Escargot.jpg" alt="site">
+       <img src="../../images/Louvre.jpg" alt="site">
        <h4>Check Out Our Favorite Attractions</h4>
      </div>
 
 
-      <div class="">
+      <div class="category">
         <h2>EAT!</h2>
         <h4>Attractions</h4>
-        <img src="../../public/images/ChinaApples.jpg" alt="food">
+        <img src="../../images/Escargot.3jpg" alt="food">
         <h4>Check Out Our Favorite Places to Eat!</h4>
       </div>
   </section>
