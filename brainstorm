@@ -66,14 +66,44 @@ Route setup models & methods:
 
 SESSIONS
 Route setup models & methods:
-  -Create schema
-  -Create route frameworks for post/put/delete methods
+  -Create route frameworks for post/delete methods
+      ??? should there be a put route ???
 
   HTML:
-    -Create New & Edit HTML Forms
+    -Create New Login
     -Create Index HTML Forms
+     & Edit HTML Forms
 
     Test & Validate Sessions
+
+DAY 3: Clean Up & Expand
+
+Users
+  if logged in can only edit their own posts
+  *stretch show user posts pg
+  Append user login information to created posts
+
+Home pg
+  design home page
+  include Nav
+  design footer
+  Registration Look?
+  *Create About page
+
+Destination posts
+  Add comment section
+
+***GET HEOKU working
+Super stretch: Tags and filters, img file upload OR url.
+    Work with Arrays
+
+
+DAY 4
+ Testing & Validation
+  CSS
+   *seed more
+
+DAY 5 CSS, README mark up, & Presentation Summary
 
 
 USERS
