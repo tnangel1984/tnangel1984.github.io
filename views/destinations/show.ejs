@@ -13,38 +13,51 @@
   <div class="container">
    <!-- <h1>Destination: <%= destination.city%>, <%= destination.country%> <br/></h2> -->
 
-         <div class="imgPost">
-            <img src="<%=destination.img1%>" alt="" >
-             <img src="<%=destination.img2%>" alt="" >
-            <img src="<%=destination.img3%>" alt="" >
+<!-- Image Section -->
+         <div class="imgFrame">
+            <div class="imgPost" style="background-image:url('<%=destination.img1%>');"></div>
+            <div class="imgPost" style="background-image:url('<%=destination.img2%>');"></div>
+            <div class="imgPost" style="background-image:url('<%=destination.img3%>');"></div>
+
+
+            <!-- <div class="imgPost"<img src="<%=destination.img2%>" alt="" /> </div>
+            <div class="imgPost"<img src="<%=destination.img3%>" alt="" ></div> -->
+
+          </div>
+
           <!-- <li>   </li>
           <li>   </li>
           <li>    </li> -->
-        </div>
 
 
-<section class="content">
-          <h4>Tags: <%= destination.tags%></h4>
-          <h2>Destination: <%= destination.city%>
+<!-- Content Section -->
+        <section class="content">
+                  <h4>Tags: <%= destination.tags%></h4>
+                  <h2>Destination: <%= destination.city%>
 
-          <h3>Adventures</h3>
-          <div class="adv">
-          <p> Description: <%= destination.description%></p>
-          </div><br/>
+                  <!-- <h3>Adventures</h3> -->
+                  <div class="adv">
+                  <p>  <span>Adventures:</span> <%= destination.description%></p>
+                  </div><br/>
 
-</section>
+        </section>
 
+<!-- User Options if Logged In  -->
+        <%if(currentUser){%>
+              <nav>
+                   <a href="/destinations/<%=id%>/edit">Edit Post</a>
+              </nav>
 
-    <%if(currentUser){%>
-          <nav>
-               <a href="/destinations/<%=id%>/edit">Edit Post</a>
-          </nav>
+               <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
+                  <input type="submit" name="" value="DELETE POST">
+               </form>
+          <%  }  %>
 
-           <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
-              <input type="submit" name="" value="DELETE POST">
-           </form>
-      <%  }  %>
-
-      </div>
+    </div>
+    
+<!-- Footer -->
+  <footer>
+      <% include ../partials/footer.ejs%>
+  </footer>
   </body>
 </html>

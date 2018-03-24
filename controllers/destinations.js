@@ -79,7 +79,7 @@ router.get('/:id', (req, res)=>{
           id:req.params.id,
           currentUser: req.session.currentUser
         });
-        console.log(req.session.currentUser);
+        // console.log(req.session.currentUser);
       });
 });
 
