@@ -7,65 +7,59 @@
   </head>
   <body>
 
+  <main>
+
 <!--=====HEADER======== -->
-      <header>
+    <header>
 
-          <% include ./partials/nav.ejs %>
-          <h1>Travels <span class="headTitle">Uncovered</span></h1><br/>
+        <% include ./partials/nav.ejs %>
 
-          <!-- <nav>
-            <ul>
-                <li> <a href="#">About</a> </li>
-                <li> <a href="/destinations"> Destinations</a> </li>
-                <li> <a href="/travelers">Travelers</a> </li>
-                <li> <a href="/travelers/login">LogIn</a> </li>
-               <li> <a href="/register">Register</a> </li>
-            </ul>
-          </nav> -->
-
-          <!-- <img src="https://images.pexels.com/photos/358482/pexels-photo-358482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=""/> -->
-
-      </header>
-
-  <section>
-    <h1>EXPLORE</h1>
-     <div class="category">
-       <h2>GO!</h2>
-       <img src="../../images/pexels-RoadTrip.jpeg" alt="place">
-       <h4>Check Out Our Favorite Destinations</h4>
-     </div>
+        <h1>Travels <span class="headTitle">Uncovered</span></h1><br/>
 
 
-     <div class="category">
-       <h2>SEE!</h2>
-       <img src="../../images/Louvre.jpg" alt="site">
-       <h4>Check Out Our Favorite Attractions</h4>
-     </div>
+    </header>
+
+    <section class="categories">
+      <h1>EXPLORE</h1>
+
+       <div class="category">
+         <h2>GO!</h2>
+         <a href="/destinations"><img class="imgCat" src="../../images/pexels-RoadTrip.jpeg" alt="place"></a>
+         <h4>Check Out Our Favorite Destinations</h4>
+       </div>
 
 
-      <div class="category">
-        <h2>EAT!</h2>
-        <h4>Attractions</h4>
-        <img src="../../images/Escargot.3jpg" alt="food">
-        <h4>Check Out Our Favorite Places to Eat!</h4>
-      </div>
-  </section>
+       <div class="category">
+         <h2>SEE!</h2>
+         <a href="#"><img class="imgCat"src="../../images/Louvre.jpg" alt="site"></a>
+         <h4>Check Out Our Favorite Attractions</h4>
+       </div>
 
 
- <article class="">
-   <h2> Our Traveler's</h2>
-     <img src="#" alt="">
-     <img src="#" alt="">
-     <img src="#" alt="">
-     <img src="#" alt="">
-     <img src="#" alt="">
-     <img src="#" alt="">
+        <div class="category">
+          <h2>EAT!</h2>
+          <a href="#"> <img class="imgCat" src="../../images/Escargot.jpg" alt="food"></a>
+          <h4>Check Out Our Favorite Places to Eat!</h4>
+        </div>
+    </section>
 
- </article>
 
- <footer>
+   <section class="community">
+     <h1> Our Traveler's</h2>
+       <img src="#" alt="">
+       <img src="#" alt="">
+       <img src="#" alt="">
+       <img src="#" alt="">
+       <img src="#" alt="">
+       <img src="#" alt="">
 
- </footer>
+   </section>
 
+     <footer>
+        <% include ./partials/footer.ejs %>
+     </footer>
+   </main>
   </body>
+
+
 </html>
