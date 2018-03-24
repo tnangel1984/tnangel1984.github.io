@@ -11,7 +11,7 @@
 
 
   <div class="container">
-   <!-- <h1>Destination: <%= destination.city%>, <%= destination.country%> <br/></h2> -->
+   <h1>Destination: <%= destination.city%>, <%= destination.country%> <br/></h2>
 
 <!-- Image Section -->
          <div class="imgFrame">
@@ -32,29 +32,32 @@
 
 <!-- Content Section -->
         <section class="content">
-                  <h4>Tags: <%= destination.tags%></h4>
-                  <h2>Destination: <%= destination.city%>
+           <a href="/destinations/<%=id%>/edit">Edit Post</a>
 
-                  <!-- <h3>Adventures</h3> -->
-                  <div class="adv">
-                  <p>  <span>Adventures:</span> <%= destination.description%></p>
-                  </div><br/>
+            <h4>Tags: <%= destination.tags%></h4>
+            <h2>Destination: <%= destination.city%>
+
+            <!-- <h3>Adventures</h3> -->
+            <div class="adv">
+            <p>  <span>Adventures:</span> <%= destination.description%></p>
+            </div><br/>
+
+
+            <%if(currentUser){%>
+                  <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
+                    <input class="btn" type="submit" name="" value="DELETE POST">
+                </form>
+          <% } %>
 
         </section>
 
-<!-- User Options if Logged In  -->
-        <%if(currentUser){%>
-              <nav>
-                   <a href="/destinations/<%=id%>/edit">Edit Post</a>
-              </nav>
-
-               <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
-                  <input type="submit" name="" value="DELETE POST">
-               </form>
-          <%  }  %>
 
     </div>
-    
+<!-- User Options if Logged In  -->
+
+
+
+
 <!-- Footer -->
   <footer>
       <% include ../partials/footer.ejs%>
