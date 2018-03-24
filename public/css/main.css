@@ -1,5 +1,7 @@
 body{margin: 0;}
 
+/* ====HEADER STYLING====*/
+/* Header nav style */
 nav {
   /* background-color: #d2ddef; */
   background: linear-gradient( to right, #d2ddef, white);
@@ -10,17 +12,24 @@ nav {
 }
 
 nav:hover{
+  background-color: #afbdd1;
   opacity: 1;
+  box-shadow:  3px 3px 20px  #d2ddef;
+
 }
 nav > a{
+  opacity: 1;
   display: inline-block;
-  color:#96989b;
-  font-size: 20px;
-  font-weight: bold;
+  color:#1a2d4c;
+  font-size: 25px;
+  /* font-weight: bold; */
   padding: 20px  40px;
 
 }
 
+nav > a:hover{
+  color: blue;
+}
 
 nav > .nav{
   display: inline-block;
@@ -28,6 +37,14 @@ nav > .nav{
   font-size: 15px;
 }
 
+ .btn{
+  background-color: transparent;
+}
+.btn:hover{
+  color:blue;
+}
+
+/* header img style  */
 header{
   margin: 0;
   width: 100%;
@@ -36,7 +53,23 @@ header{
   background-image: url("https://images.pexels.com/photos/358482/pexels-photo-358482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-size: cover;
   background-repeat: no-repeat;
+}
 
-/* image-rendering: -webkit-optimize-contrast;; */
-     /* "https://images.pexels.com/photos/358482/pexels-photo-358482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=12" */
+h1{font-size: 90px;
+position:relative;
+top:0%;
+left:10%;
+color: white;
+font-weight: bold;
+text-shadow: 4px 4px 5px gray;
+font-style: italic;
+}
+
+.headTitle{
+  font-style: italic;
+  font-size: 80px;
+}
+
+h2
+
 }
