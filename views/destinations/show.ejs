@@ -3,35 +3,48 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/show.css">
     <title></title>
   </head>
   <body>
-
-      <h1>Destination: <%= destination.city%>, <%= destination.country%> <br/></h2>
-
-     <div class="post">
-         <img src="<%=destination.img1%>" alt="" >
-         <img src="<%=destination.img2%>" alt="" >
-         <img src="<%=destination.img3%>" alt="" >
-      </div><br/>
-
-      <h4>Tags: <%= destination.tags%></h4>
-      <h2>Destination: <%= destination.city%>
-
-      <h3>Adventures</h3>
-      <div class="adv">
-      <p> Description: <%= destination.description%></p>
-      </div><br/>
+    <%include ../partials/nav.ejs%>
 
 
-<%if(currentUser){%>
-      <nav>
-           <a href="/destinations/<%=id%>/edit">Edit Post</a>
-      </nav>
+  <div class="container">
+   <!-- <h1>Destination: <%= destination.city%>, <%= destination.country%> <br/></h2> -->
 
-       <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
-          <input type="submit" name="" value="DELETE POST">
-       </form>
-  <%  }  %>
+         <div class="imgPost">
+            <img src="<%=destination.img1%>" alt="" >
+             <img src="<%=destination.img2%>" alt="" >
+            <img src="<%=destination.img3%>" alt="" >
+          <!-- <li>   </li>
+          <li>   </li>
+          <li>    </li> -->
+        </div>
+
+
+<section class="content">
+          <h4>Tags: <%= destination.tags%></h4>
+          <h2>Destination: <%= destination.city%>
+
+          <h3>Adventures</h3>
+          <div class="adv">
+          <p> Description: <%= destination.description%></p>
+          </div><br/>
+
+</section>
+
+
+    <%if(currentUser){%>
+          <nav>
+               <a href="/destinations/<%=id%>/edit">Edit Post</a>
+          </nav>
+
+           <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
+              <input type="submit" name="" value="DELETE POST">
+           </form>
+      <%  }  %>
+
+      </div>
   </body>
 </html>
