@@ -1,0 +1,32 @@
+/* body{background-color: #DAAD86; */
+
+
+.container{ width: 70%;
+    margin: 0 auto;
+    border: 1px solid #DAAD86;
+}
+
+
+
+fieldset{
+  background-color: seashell;
+}
+
+hr{
+  width: 90%;
+  padding-left: 15px;
+  background-color: #FBEEC1;
+}
+
+.rows{ margin: 0 30px;
+    padding: 3 100px;
+/* background-color: seashell; */
+}
+/* .txtbx{
+
+  display: block;
+} */
+/* #FBEEC1
+#DAAD86
+#659DBD
+#8D8741 */

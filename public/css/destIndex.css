@@ -10,6 +10,11 @@ margin: 30px;
 text-align: center;
 }
 
+a{padding: 75px;
+  margin: 0 auto;
+  text-align: center;
+
+}
 img{padding: 0px;
    border: 5px solid #d2ddef;
 }

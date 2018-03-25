@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 
 //Travelers Page ROUTERS
 //index
-router.get('/', (req, res)=>{
+router.get('/travelers', (req, res)=>{
   res.render('travelers/index.ejs')
 });
 
@@ -28,6 +28,16 @@ router.get('/edit', (req, res)=>{
   res.render('travelers/edit.ejs')
 })
 
+//show pg
+router.get('/travelers/:index', (req, res)=>{
+  Traveler.findById(req.params.id, (err, foundTraveler{
+    res.render('/travelers/show/ejs', {
+         traveler: foundTraveler,
+         id: req.params.id
+    });
+  }))
+
+})
 
 
 module.exports = router;
