@@ -79,36 +79,49 @@ Route setup models & methods:
 DAY 3: Clean Up & Expand
 
 Users
-  if logged in can only edit their own posts
-  *stretch show user posts pg
-  Append user login information to created posts
+ Edit/Delete to only show for users logged in.
 
 Home pg
   design home page
   include Nav
   design footer
   Registration Look?
-  *Create About page
 
-Destination posts
-  Add comment section
-
-***GET HEOKU working
-Super stretch: Tags and filters, img file upload OR url.
-    Work with Arrays
-
+Start CSS! Home Destination Show
 
 DAY 4
  Testing & Validation
-  CSS
-   *seed more
+Continue CSS!
+  *Style Show page
+  *Style footer
+  *Style Category section
+  *Style LogIn and User Forms
 
-DAY 5 CSS, README mark up, & Presentation Summary     
+
+USER expansion
+  *stretch user profile
+  *Stretch if logged in can only edit their own posts
+  show user own posts pg
+  Append user login information to created posts
+  USER login currently directs to  destinations pages
+  Would be great if there was a user page direct to user page with only user post
+
+*seed more
+
+***GET HEROKU working
 
 
-USERS
-USER login currently directs to  destinations pages
-Would be great if there was a user page direct to user page with only user posts
+DAY 5 CSS, README mark up, & Presentation Summary
+
+
+
+*Create About page
+
+Destination posts
+*Stretch Add comment section
+Super stretch: Tags and filters, img file upload OR url.
+    Work with Arrays
+
 
   -Repeat Route setups for pages and methods in user file.
 
