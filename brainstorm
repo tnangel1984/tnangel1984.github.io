@@ -43,6 +43,7 @@ HTML:
   -Create Index HTML Forms
 
   Test & Validate destinations
+  -Repeat Route setups for pages and methods in user file.
 
 DAY 2: BRAINSTORM - check direction flush out balance of calendar. AND VISION
 
@@ -97,7 +98,9 @@ Continue CSS!
   *Style Category section
   *Style LogIn and User Forms
 
-
+DAY 5 CSS, README mark up, & Presentation Summary
+***GET HEROKU working
+  *Style LogIn and User Forms
 USER expansion
   *stretch user profile
   *Stretch if logged in can only edit their own posts
@@ -108,12 +111,6 @@ USER expansion
 
 *seed more
 
-***GET HEROKU working
-
-
-DAY 5 CSS, README mark up, & Presentation Summary
-
-
 
 *Create About page
 
@@ -123,7 +120,6 @@ Super stretch: Tags and filters, img file upload OR url.
     Work with Arrays
 
 
-  -Repeat Route setups for pages and methods in user file.
 
 IMAGES/
 

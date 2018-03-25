@@ -1,8 +1,20 @@
-.body{background-color: #D5DBDB;  }
+body{
+  /* background-color: #D5DBDB; */
+
+  background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/I-80_in_western_Iowa.jpg/1600px-I-80_in_western_Iowa.jpg');
+
+
+/* background-image: url('https://images.pexels.com/photos/239520/pexels-photo-239520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); */
+background-repeat: no-repeat;
+background-size: cover;
+/* opacity: .3; */
+}
+
 .container{
   width: 80%;
   margin: 0 auto;
-background-color: #F2F3F4;
+  opacity: 1;
+/* background-color: #F2F3F4; */
 }
 
 .destList{ display: inline-block;
@@ -10,11 +22,17 @@ margin: 30px;
 text-align: center;
 }
 
-a{padding: 75px;
+.post{padding: 75px;
   margin: 0 auto;
   text-align: center;
 
 }
 img{padding: 0px;
-   border: 5px solid #d2ddef;
+     border: 1px solid #bdaa82;
+   /* border: 5px solid #d2ddef; */
 }
+a{ t}
+
+#city{color: #d9671b;
+text-decoration: underline;}
+#country{color:#813d05;}

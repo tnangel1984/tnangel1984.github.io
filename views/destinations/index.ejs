@@ -10,19 +10,19 @@
    <nav>
        <% include ../partials/nav.ejs %>
    </nav>
-
+<div value="background">
     <h1>DESTINATIONS</h1>
-    <a href="/destinations/new">Share Your Journey!</a>
+    <a class="post" href="/destinations/new">Share Your Journey!</a>
 
     <div class="container">
         <%for(i=0; i < destinations.length; i++){%>
           <div class="destList">
               <a href="destinations/<%=destinations[i].id%>"><img class="imgCat" src="<%=destinations[i].img1%>" alt=""></a>
-              <h4><a href="/destinations/<%=destinations[i].id%>">  <%=destinations[i].city%></a>, <%=destinations[i].country%></h4>
+              <h4><a href="/destinations/<%=destinations[i].id%>"><span id ="city" ><%=destinations[i].city%></span></a>, <span id="country"><%=destinations[i].country%></span></h4>
           </div>
         <%}%>
     </div>
-
+</div>
       <footer>
         <% include ../partials/footer.ejs%>
       </footer>
