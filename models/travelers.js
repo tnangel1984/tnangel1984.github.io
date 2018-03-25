@@ -12,6 +12,7 @@ const travelerSchema = new Schema(
       password:{type:String, required:true},
       email:{type:String, required:true},
       profileImg:String,
+      aboutUser:String,
       // posts:[destinationSchema]
     },
     {

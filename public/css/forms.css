@@ -29,8 +29,12 @@ hr{
 }
 
 
-label{padding-left: 20px;
+label{
+  /* float: left; */
+  padding-left: 20px;
 margin-top: 10px;
+
+text-align: right;
 }
 /* .txtbx{
 
@@ -41,7 +45,7 @@ margin-top: 10px;
 #659DBD
 #8D8741 */
 
-
+input{}
 .btn{ margin: 5px 10%;}
 
 footer{
