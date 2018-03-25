@@ -7,7 +7,12 @@ const bcrypt = require('bcrypt');
 //Travelers Page ROUTERS
 //index
 router.get('/travelers', (req, res)=>{
-  res.render('travelers/index.ejs')
+  Traveler.find({}, (err, allTravelers)=>{
+      res.render('travelers/index.ejs',{
+        travelers: allTravelers
+      })
+  })
+
 });
 
 //new
