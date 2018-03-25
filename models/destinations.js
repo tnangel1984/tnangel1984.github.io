@@ -15,6 +15,7 @@ const destinationSchema = new Schema(
    recco:String,
    description:String,
    tags:[String]
+   postedBy:{username:String}
 
  },
  {timestamps:true}

@@ -7,7 +7,9 @@ const travelerSchema = new Schema(
     {
       username:{type:String, required:true},
       password:{type:String, required:true},
-      email:{type:String, required:true}
+      email:{type:String, required:true},
+      profile img:String,
+      posts:[destinationSchema]
     },
     {
       timestamps:true
