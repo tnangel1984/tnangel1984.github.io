@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
         <link rel="stylesheet" href="/css/main.css">
+         <link rel="stylesheet" href="/css/forms.css">
     <title></title>
   </head>
   <body>
@@ -13,12 +14,16 @@
 
    <h1>Traveler Login</h1>
    <form class="" action="/sessions/new" method="post">
-        <hr>
-          username: <input type="text" name="username" placeholder="username" value=""> <br/>
-        <hr>
-          password: <input type="text" name="password" value=""> <br/>
-        <hr>
-          <input type="submit" name="" value="LOGIN">
+     <div class="rows">
+         <!-- <hr> -->
+          <label for=""> Username:</label> <input type="text" name="username" placeholder="username" value=""> <br/>
+         <hr>
+         <label for="">Password:</label> <input type="text" name="password" value=""> <br/>
+         <hr>
+
+           <input class="btn" type="submit" name="" value="LOGIN">
+     </div>
+
    </form>
 
    <footer>
@@ -26,3 +31,4 @@
    </footer>
   </body>
 </html>
+<label for=""></label>

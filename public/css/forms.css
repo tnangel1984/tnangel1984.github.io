@@ -8,19 +8,29 @@
 
 
 
+h1{color: midnightblue;}
+
 fieldset{
   background-color: seashell;
 }
 
+.rows{
+    width: 475px;
+    margin: 0 10%;
+    padding-top: 10px;
+    border: 2px solid slategray;
+
+/* background-color: seashell; */
+}
+
+
 hr{
-  width: 90%;
-  padding-left: 15px;
   background-color: #FBEEC1;
 }
 
-.rows{ margin: 0 30px;
-    padding: 3 100px;
-/* background-color: seashell; */
+
+label{padding-left: 20px;
+margin-top: 10px;
 }
 /* .txtbx{
 
@@ -30,3 +40,11 @@ hr{
 #DAAD86
 #659DBD
 #8D8741 */
+
+
+.btn{ margin: 5px 10%;}
+
+footer{
+  position:absolute;
+  bottom:0;
+}

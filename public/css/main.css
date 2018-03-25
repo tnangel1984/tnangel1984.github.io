@@ -142,9 +142,11 @@ border-top: 1px solid gray;
 
 /*===== Footer Section ======*/
 footer{
-  height:100px;
+  height:70px;
+  width:100%;
   background-color: #4F628E;
   color: white;
+  
 }
 
 .footer1{
@@ -162,5 +164,6 @@ footer>img{
   width:auto;
   border-radius: 0%;
   border:5px solid #d2ddef;
+
   /* text-align: right; */
 }
