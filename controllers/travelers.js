@@ -6,13 +6,13 @@ const bcrypt = require('bcrypt');
 
 //Travelers Page ROUTERS
 //index
-router.get('/travelers', (req, res)=>{
+router.get('/', (req, res)=>{
+
   Traveler.find({}, (err, allTravelers)=>{
       res.render('travelers/index.ejs',{
         travelers: allTravelers
-      })
-  })
-
+      });
+  });
 });
 
 //new
@@ -34,15 +34,14 @@ router.get('/edit', (req, res)=>{
 })
 
 //show pg
-router.get('/travelers/:index', (req, res)=>{
-  Traveler.findById(req.params.id, (err, foundTraveler{
-    res.render('/travelers/show/ejs', {
-         traveler: foundTraveler,
-         id: req.params.id
-    });
-  }))
-
-})
-
+// router.get('/travelers/:index', (req, res)=>{
+//   Traveler.findById(req.params.id, (err, foundTraveler)=>{
+//     res.render('/travelers/show/ejs', {
+//          traveler: foundTraveler,
+//          id: req.params.id
+//     });
+//   });
+// });
+//
 
 module.exports = router;
