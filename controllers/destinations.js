@@ -21,14 +21,18 @@ router.get('/seedDestinations', (req, res)=>{
 router.get('/', (req, res)=>{
     Destination.find({}, (err, allDestinations)=>{
         res.render('destinations/index.ejs', {
-          destinations: allDestinations
+          destinations: allDestinations,
+          currentUser:req.session.currentUser
         });
     });
 });
 
 //NEW pg
 router.get('/new', (req, res)=>{
-  res.render('destinations/new.ejs');
+  res.render('destinations/new.ejs',{
+  currentUser: req.session.currentUser
+  });
+  console.log(req.session.currentUser);
 })
 
 
@@ -74,12 +78,11 @@ router.put('/:id/', (req, res)=>{
 router.get('/:id', (req, res)=>{
       Destination.findById(req.params.id, (err, foundDestination)=>{
         res.render('destinations/show.ejs', {
-
           destination: foundDestination,
           id:req.params.id,
           currentUser: req.session.currentUser
         });
-        // console.log(req.session.currentUser);
+        console.log(req.session.currentUser);
       });
 });
 

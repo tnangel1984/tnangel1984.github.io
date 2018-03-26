@@ -2,15 +2,25 @@ const express = require('express');
 const router = express.Router();
 const Traveler = require('../models/travelers.js');
 const bcrypt = require('bcrypt');
+const seed = require('../models/seedTravelers.js');
 
 
 //Travelers Page ROUTERS
+//seedDestinations
+router.get('/seedTravelers', (req, res)=>{
+  Traveler.create(seed, (err, createdTraveler)=>{
+      res.redirect('/Travelers');
+  });
+});
+
+
 //index
-router.get('/', (req, res)=>{
+router.get('/showAll', (req, res)=>{
 
   Traveler.find({}, (err, allTravelers)=>{
       res.render('travelers/index.ejs',{
-        travelers: allTravelers
+        travelers: allTravelers,
+        currentUser:req.session.currentUser
       });
   });
 });
@@ -33,8 +43,18 @@ router.get('/edit', (req, res)=>{
   res.render('travelers/edit.ejs')
 })
 
-//show pg
-// router.get('/travelers/:index', (req, res)=>{
+
+//Delete
+router.delete('/:id', (req, res)=>{
+  Traveler.findByIdAndRemove(req.params.id, (err,removeDestination)=>{
+    res.redirect('/travelers');
+  });
+})
+
+
+
+// show pg
+// router.get('/showAll/:index', (req, res)=>{
 //   Traveler.findById(req.params.id, (err, foundTraveler)=>{
 //     res.render('/travelers/show/ejs', {
 //          traveler: foundTraveler,
@@ -42,6 +62,6 @@ router.get('/edit', (req, res)=>{
 //     });
 //   });
 // });
-//
+
 
 module.exports = router;

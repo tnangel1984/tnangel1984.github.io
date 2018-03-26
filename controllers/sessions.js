@@ -14,11 +14,12 @@ router.post("/new", (req, res)=>{
             //must do a bcrypt comparaon here because of encrption
           if(bcrypt.compareSync(req.body.password, foundUser.password)){
               // create a session specific user
-            req.session.currentUser = foundUser;  
+            req.session.currentUser = foundUser;
             res.redirect('/destinations');
           }else{
             res.send("Error wrong password");
           }
+          console.log(req.body);
     });
 });
 

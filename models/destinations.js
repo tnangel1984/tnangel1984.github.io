@@ -14,8 +14,8 @@ const destinationSchema = new Schema(
    img3:String,
    recco:String,
    description:String,
-   tags:[String],
-   postedBy:{username:{type:String}}
+   tags:[String]
+   // postedBy:{username:String}
 
  },
  {timestamps:true}

@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+      <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/destIndex.css">
-    <link rel="stylesheet" href="/css/main.css">
+
     <title></title>
   </head>
   <body>
@@ -12,7 +13,10 @@
    </nav>
 <div value="background">
     <h1>DESTINATIONS</h1>
-    <p class="post"><a class="post" href="/destinations/new"> Click Here</a> to Share Your Journey!</p>
+    
+    <%if(currentUser){%>
+        <p class="post"><a class="post" href="/destinations/new"> Click Here</a> to Share Your Journey!</p>
+     <%}%>
 
     <div class="container">
         <%for(i=0; i < destinations.length; i++){%>
@@ -21,11 +25,13 @@
               <h4><a href="/destinations/<%=destinations[i].id%>"><span id ="city" ><%=destinations[i].city%></span></a>, <span id="country"><%=destinations[i].country%></span></h4>
           </div>
         <%}%>
+
     </div>
+
+    <footer>
+      <% include ../partials/footer.ejs%>
+    </footer>
 </div>
-      <footer>
-        <% include ../partials/footer.ejs%>
-      </footer>
 
   </body>
 </html>
