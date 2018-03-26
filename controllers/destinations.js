@@ -22,7 +22,7 @@ router.get('/', (req, res)=>{
     Destination.find({}, (err, allDestinations)=>{
         res.render('destinations/index.ejs', {
           destinations: allDestinations,
-          currentUser:req.session.currentUser
+          // currentUser:req.session.currentUser
         });
     });
 });

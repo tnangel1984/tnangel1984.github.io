@@ -35,9 +35,9 @@
 
 <!-- Content Section -->
         <section class="content">
-          <%if(currentUser){%>
+
            <a href="/destinations/<%=id%>/edit">Edit Post</a>
-         <% } %>
+
 
             <h4>Tags: <%= destination.tags%></h4>
             <h2>Destination: <%= destination.city%>
@@ -49,11 +49,11 @@
 
             <!-- <%=destination.postedBy%> -->
 
-            <%if(currentUser){%>
+
                   <form class="" action="/destinations/<%=id%>?_method=DELETE" method="POST">
                     <input class="btn" type="submit" name="" value="DELETE POST">
                 </form>
-          <% } %>
+        
 
         </section>
 
