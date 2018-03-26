@@ -7,7 +7,7 @@ const seed = require('../models/seedTravelers.js');
 
 //Travelers Page ROUTERS
 //seedDestinations
-router.get('/seedTravelers', (req, res)=>{
+router.get('showAll/seedTravelers', (req, res)=>{
   Traveler.create(seed, (err, createdTraveler)=>{
       res.redirect('/Travelers');
   });
