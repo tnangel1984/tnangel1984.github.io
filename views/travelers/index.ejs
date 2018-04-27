@@ -17,12 +17,14 @@
 
       <% for(i=0; i < travelers.length; i++){%>
         <div class="travList"
-        <span id="userß"> <%=travelers[i].aboutUser%> </span><br/>
-        <img class="imgCat" src="<%=travelers[i].profileImg%>" alt=""/>
+        <span id="user"> <%=travelers[i].aboutUser%> </span><br/>
+        <a href="/travelers/<%=travelers[i].id%>">
+          <img class="imgCat" src="<%=travelers[i].profileImg%>" alt=""/>
+        </a>
         <span id="user"><%=travelers[i].username%></span><br/>
 
         <%if(currentUser){%>
-            <form class="" action="/travelers/<%=travelers[i].id%>?_method=DELETE" method="POST">
+            <form class="" action="/travelers/showAll/<%=travelers[i].id%>?_method=DELETE" method="POST">
                <input type="submit" name="" value="Delete User">
             </form>
           <%}%>

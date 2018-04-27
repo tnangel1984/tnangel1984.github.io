@@ -4,7 +4,7 @@ Uses: JAVASCRIPT, NODE.JS, MONGOdb, HTML, CSS
 
 ==== ABOUT ====
 
-ABOUT: Travels_Unconverd is a community of Travelers sharing our destinations, adventures, and recommendations with fellow impassioned travelers.
+ABOUT: Travels_Uncovered is a community of Travelers sharing our destinations, adventures, and recommendations with fellow impassioned travelers.
 
 ==== Structure ====
 1.Home page
@@ -25,3 +25,4 @@ Challenges with CSS styling and standardizing images.
 Would love to add Food and Site recommendation pages (see Category section on Home Page)
 Search Tools and filtering.
 Linked Tags.
+Append Destination Posts to Users

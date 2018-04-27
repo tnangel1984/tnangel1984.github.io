@@ -7,15 +7,15 @@ const seed = require('../models/seedTravelers.js');
 
 //Travelers Page ROUTERS
 //seedDestinations
-router.get('showAll/seedTravelers', (req, res)=>{
+router.get('/seedTravelers', (req, res)=>{
   Traveler.create(seed, (err, createdTraveler)=>{
-      res.redirect('/Travelers');
+      res.redirect('//Travelers');
   });
 });
 
 
 //index
-router.get('/showAll', (req, res)=>{
+router.get('/', (req, res)=>{
 
   Traveler.find({}, (err, allTravelers)=>{
       res.render('travelers/index.ejs',{
@@ -54,14 +54,16 @@ router.delete('/:id', (req, res)=>{
 
 
 // show pg
-// router.get('/showAll/:index', (req, res)=>{
-//   Traveler.findById(req.params.id, (err, foundTraveler)=>{
-//     res.render('/travelers/show/ejs', {
-//          traveler: foundTraveler,
-//          id: req.params.id
-//     });
-//   });
-// });
+router.get('/:id', (req, res)=>{
+  Traveler.findById(req.params.id, (err, foundTraveler)=>{
+    console.log(foundTraveler);
+    res.render('travelers/show.ejs', {
+         traveler: foundTraveler,
+         id: req.params.id
+    });
+    console.log(traveler);
+  });
+});
 
 
 module.exports = router;
